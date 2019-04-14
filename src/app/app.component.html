@@ -1,20 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div id="home" style="text-align:center">
-  <app-navigation></app-navigation>
-  <div style="height: 100vh">
-    <app-home></app-home>
-    <div class="flex-center flex-column">
-      <h1 class="text-white animated fadeIn mb-4">Welcome to the thrifting zone!</h1>
-  
-      <h5 class="text-white deep-orange-lighter-hover mb-3">Log in to view details pages.</h5>
-      <div>
-        <button type="button" mdbBtn color="primary" mdbWavesEffect>Log in</button>
-        <button type="button" mdbBtn color="primary" mdbWavesEffect>Sign Up</button>
-
-      </div>
-  
-      <p class="animated fadeIn text-muted">MDB Team</p>
-    </div>
+<app-navigation></app-navigation>
+<main>
+  <div class='m2'>
+      <router-outlet></router-outlet>
   </div>
-</div>
-<router-outlet></router-outlet>
+</main>
