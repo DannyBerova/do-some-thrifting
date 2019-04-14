@@ -1,9 +1,13 @@
 #home{
     background-image: url("./shared-images/cuddly-toy-handwriting-lonely-165263.jpg");
-    background-color: darkseagreen;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
     background-position: bottom; 
-    min-height: 1000px;
+    min-width: 100%;
+    padding-top: 4%;
+}
+
+.sample{
+    text-decoration-color: yellow;
+    text-shadow: 10px;
 }
