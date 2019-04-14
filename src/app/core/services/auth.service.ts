@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly loginUrl = 'http://do-some-thrifting-db.herokuapp.com/auth/login';
-  private readonly registerUrl = 'http://do-some-thrifting-db.herokuapp.com/auth/register';
+  private readonly loginUrl = 'https://do-some-thrifting-db.herokuapp.com/auth/login';
+  private readonly registerUrl = 'https://do-some-thrifting-db.herokuapp.com/auth/register';
 
   constructor(
     private http: HttpClient
