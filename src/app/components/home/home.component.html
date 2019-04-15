@@ -1,22 +1,25 @@
 <div id="home" style="text-align:center">
-  <ng-template [ngIf]="username">
+  <ng-template [ngIf]="isLoggedIn">
     <h3>
       Hello, {{username}}!
     </h3>
   </ng-template>
+  
     <div style="height:60vh">
       <div class="flex-center flex-column">
         <h1 class="text-black animated fadeIn mb-4 font-weight-bolder">Welcome to the</h1>
         <h1 class="text-black animated fadeIn mb-4 font-weight-bolder">thrifting zone!</h1>
     
-        <h5 class="text-white deep-orange-lighter-hover mb-3">Log in to view details pages.</h5>
+        <ng-template [ngIf]="isLoggedIn">
+            <button type="button" mdbBtn color="dark-green" routerLink="/post/all" mdbWavesEffect >Go To Market</button>
+          </ng-template>
+          <ng-template [ngIf]="!isLoggedIn">
+              <h5 class="text-white deep-orange-lighter-hover mb-3">Log in to view details pages.</h5>
         <div>
           <button type="button" mdbBtn color="dark-green" routerLink="/user/login" mdbWavesEffect >Log in</button>
           <button type="button" mdbBtn color="dark-green" routerLink="/user/register" mdbWavesEffect>Sign Up</button>
-  
         </div>
-    
-        <p class="animated fadeIn text-muted">MDB Team</p>
+            </ng-template>
       </div>
     </div>
   </div>

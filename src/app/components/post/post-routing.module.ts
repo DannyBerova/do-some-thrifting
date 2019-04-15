@@ -10,10 +10,10 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'all' },
   { path: 'all', component: PostAllComponent, canActivate: [AuthGuard] },
-  { path: 'create', component: PostCreateComponent },
-  { path: 'edit/:id', component: PostEditComponent },
-  { path: 'details/:id', component: PostDetailsComponent },
-  { path: 'mine', component: PostMineComponent },
+  { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
+  { path: 'edit/:id', component: PostEditComponent, canActivate: [AuthGuard] },
+  { path: 'details/:id', component: PostDetailsComponent, canActivate: [AuthGuard]},
+  { path: 'mine', component: PostMineComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

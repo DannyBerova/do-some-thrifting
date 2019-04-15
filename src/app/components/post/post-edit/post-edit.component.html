@@ -1,3 +1,97 @@
-<p>
-  post-edit works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-lg-10 col-sm-12 mt-lg-5 mb-lg-5 mt-md-3 mb-md-3">
+            <!-- Default form register -->
+            <form 
+            class="text-center border border-light p-5" 
+            [formGroup]="form" 
+            (submit)="onSubmitHandler()">
+        
+            <p class="h4 mb-4">Edit Post</p>
+            <pre>{{form.value | json}}</pre>
+        
+                <!-- Title -->
+                <div class="mb-4">
+                <input 
+                    type="text" 
+                    id="defaultRegisterFormEmail" 
+                    class="form-control" 
+                    placeholder="Title" 
+                    formControlName="title"
+                    [ngClass]="title.touched ? (title.valid ? 'is-valid' : 'is-invalid') : null" />
+                <small 
+                    class="invalid-feedback" 
+                    *ngIf="title.touched && title.invalid">
+                    Title is invalid
+                </small>
+                </div>
+
+            <!-- Content -->
+            <div class="mb-4">
+                <input 
+                    type="text" 
+                    id="defaultRegisterFormEmail" 
+                    class="form-control" 
+                    placeholder="Content" 
+                    formControlName="content"
+                    [ngClass]="content.touched ? (content.valid ? 'is-valid' : 'is-invalid') : null" />
+                <small 
+                    class="invalid-feedback" 
+                    *ngIf="content.touched && content.invalid">
+                    Content is invalid
+                </small>
+                </div>
+            
+            <!-- Price -->
+            <div class="mb-4">
+                <input 
+                    type="number" 
+                    id="defaultRegisterPhonePassword" 
+                    class="form-control" 
+                    placeholder="Price" 
+                    aria-describedby="defaultRegisterFormPhoneHelpBlock" 
+                    formControlName="price"
+                    [ngClass]="price.touched ? (price.valid ? 'is-valid' : 'is-invalid') : null" />
+                <small 
+                    class="invalid-feedback" 
+                    *ngIf="price.touched && price.invalid">
+                    <!-- {{ phoneNumberErrorMessage }} -->
+                </small>
+            </div>
+            <div class="mb-4">
+                <input 
+                    type="url" 
+                    id="defaultRegisterPhoneEmail" 
+                    class="form-control" 
+                    placeholder="Image Url" 
+                    aria-describedby="defaultRegisterFormPhoneHelpBlock" 
+                    formControlName="images"
+                    [ngClass]="images.touched ? (images.valid ? 'is-valid' : 'is-invalid') : null" />
+                <small 
+                    class="invalid-feedback" 
+                    *ngIf="images.touched && images.invalid">
+                    <!-- {{ emailErrorMessage }} -->
+                </small>
+            </div>
+            <div class="mb-4">
+                <select class="browser-default custom-select" formControlName="category">
+                    <option *ngFor="let category of categories" [ngValue]="category">{{category}}
+                  </select>
+            </div>
+                    
+            <!-- Sign up button -->
+            <button 
+                class="btn btn-success my-4 btn-block" 
+                type="submit" 
+                [disabled]="form.invalid"
+                >
+                Edit post
+            </button>
+            <hr>
+            </form>
+        </div>
+        <div class="col-1"></div>
+        </div>
+    
+    </div>

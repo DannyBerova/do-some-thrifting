@@ -16,7 +16,7 @@ export class PostCreateComponent {
   private defaultPicture = "https://www.union.edu/files/union-marketing-layer/201803/picture.jpg";
 
   form: FormGroup = new FormGroup({});
-  categories:Array<string> = ['clothes', 'toys', 'shoes', 'home', 'outdoor', 'accessories', 'books', 'other'];
+  categories:Array<string> = ['other', 'toys', 'shoes', 'home', 'outdoor', 'accessories', 'books', 'clothes'];
 
   constructor(
     private fb: FormBuilder,

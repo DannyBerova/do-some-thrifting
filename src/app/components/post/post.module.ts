@@ -10,6 +10,7 @@ import { PostMineComponent } from './post-mine/post-mine.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostCardComponent } from './post-card/post-card.component';
+// import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PostCardComponent } from './post-card/post-card.component';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    PostRoutingModule
+    PostRoutingModule,
+    // MDBBootstrapModule.forRoot()
   ]
 })
 export class PostModule { }
