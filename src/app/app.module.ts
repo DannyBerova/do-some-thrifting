@@ -7,26 +7,44 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/shared/navigation/navigation.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './core/services/auth.service';
+import { JwtInterceptorService } from './core/interceptors/jwt-interceptor.service';
+import { ResponceHandlerInterceptorService } from './core/interceptors/responce-handler.service';
+import { FormsModule } from '@angular/forms';
+import { NotFoundComponent } from './components/shared/not-found/not-found.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    HomeComponent
+    HomeComponent,
+    NotFoundComponent,
+    FooterComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     ToastrModule.forRoot(),
   ],
   providers: [
-    AuthService
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponceHandlerInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

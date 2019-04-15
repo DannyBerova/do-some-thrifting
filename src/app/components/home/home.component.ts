@@ -1,4 +1,4 @@
-import { OnInit, Component } from '@angular/core';
+import { OnInit, Component, DoCheck } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -6,20 +6,18 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements DoCheck {
   categories: any;
+  username: string;
   constructor(
     private http: HttpClient,
   ) {
+    this.username = localStorage.getItem('user') || '';
+  }
 
-    this.http.get('https://do-some-thrifting-db.herokuapp.com/category/').subscribe(data => {
-    this.categories = data;
-    console.log('data', data);
-    console.log(this.categories);
-    });
-   }
 
-  ngOnInit() {
+  ngDoCheck() {
+    this.username = localStorage.getItem('user') || '';
   }
 
 }

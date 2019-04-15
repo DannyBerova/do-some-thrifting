@@ -1,4 +1,56 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark indigo">
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark success-color-dark" [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand ml-4" routerLink="/">Do Some Thrifting, Mama!</a></mdb-navbar-brand>
+  
+    <!-- Collapsible content -->
+    <links>
+      <!-- Links -->
+      <ng-template [ngIf]="isLoggedIn">
+      <ul class="navbar-nav mr-auto ml-4">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="/post/all">Posts<span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item" routerLinkActive="active" >
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="/post/create">Add Post</a>
+          </li>
+        </ul>
+    </ng-template>
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto mr-4">
+
+        <ng-template [ngIf]="!isLoggedIn">
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link waves-light" routerLink="/user/login" mdbWavesEffect>Login<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link waves-light" routerLink="/user/register"  mdbWavesEffect>Register</a>
+            </li>
+          </ng-template>      
+  
+          <ng-template [ngIf]="isLoggedIn">
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link waves-light" (click)="logout()" mdbWavesEffect><mdb-icon fas icon="sign-out-alt"></mdb-icon>Logout</a>
+            </li>
+          </ng-template>   
+      </ul>
+
+      <!-- <ul class="navbar-nav nav-flex-icons mr-1">
+        <li class="nav-item waves-light" mdbWavesEffect>
+            <a class="nav-link">Profile</a>
+        </li>
+        <li class="nav-item waves-light" mdbWavesEffect>
+            <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
+      </ul> -->
+    </links>
+    <!-- Collapsible content -->
+  
+  </mdb-navbar>
+  <!--/.Navbar-->
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark indigo">
   <a class="navbar-brand" href="/"><strong>Do Some Thrifting, Mama!</strong></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -28,4 +80,4 @@
           </li>
       </ul>
   </div>
-</nav>
+</nav> -->

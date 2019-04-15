@@ -1,13 +1,18 @@
-<h1>Testing</h1>
 <div id="home" style="text-align:center">
-    <div style="height: 100vh">
+  <ng-template [ngIf]="username">
+    <h3>
+      Hello, {{username}}!
+    </h3>
+  </ng-template>
+    <div style="height:60vh">
       <div class="flex-center flex-column">
-        <h1 class="text-white animated fadeIn mb-4">Welcome to the thrifting zone!</h1>
+        <h1 class="text-black animated fadeIn mb-4 font-weight-bolder">Welcome to the</h1>
+        <h1 class="text-black animated fadeIn mb-4 font-weight-bolder">thrifting zone!</h1>
     
         <h5 class="text-white deep-orange-lighter-hover mb-3">Log in to view details pages.</h5>
         <div>
-          <button type="button" mdbBtn color="primary" routerLink="/user/login" mdbWavesEffect >Log in</button>
-          <button type="button" mdbBtn color="primary" routerLink="/user/register" mdbWavesEffect>Sign Up</button>
+          <button type="button" mdbBtn color="dark-green" routerLink="/user/login" mdbWavesEffect >Log in</button>
+          <button type="button" mdbBtn color="dark-green" routerLink="/user/register" mdbWavesEffect>Sign Up</button>
   
         </div>
     
