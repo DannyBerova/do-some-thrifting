@@ -1,25 +1,19 @@
-// import { NgModule } from '@angular/core';
-// import { RouterModule } from '@angular/router';
-// import { CommonModule } from '@angular/common';
-// import { NavigationComponent } from './navigation/navigation.component';
-// import { FooterComponent } from './footer/footer.component';
-// import { NotFoundComponent } from './not-found/not-found.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CardInfoComponent } from './card-info/card-info.component';
+import { RouterModule } from '@angular/router';
 
 
-// @NgModule({
-//   declarations: [
-//     NavigationComponent,
-//     FooterComponent,
-//     NotFoundComponent
-//   ],
-//   imports: [
-//     CommonModule,
-//     RouterModule
-//   ],
-//   exports: [
-//     NavigationComponent,
-//     FooterComponent,
-//     NotFoundComponent
-//   ]
-// })
-// export class SharedModule { }
+@NgModule({
+  declarations: [
+    CardInfoComponent  
+],
+  imports: [
+    CommonModule,
+     RouterModule
+  ],
+  exports: [
+    CardInfoComponent
+  ]
+})
+export class SharedModule { }

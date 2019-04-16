@@ -23,7 +23,7 @@ import { CommentModule } from '../comment/comment.module';
     PostEditComponent, 
     PostMineComponent, 
     PostCardComponent, 
-    PostDeleteComponent
+    PostDeleteComponent,
   ],
   imports: [
     CommonModule,

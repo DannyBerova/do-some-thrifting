@@ -16,12 +16,15 @@ import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { CoreModule } from './core/core.module';
+// import { SharedModule } from './components/shared/shared.module';
+// import { PostCardInfoComponent } from './components/shared/post-card-info/post-card-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HomeComponent,
+    // PostCardInfoComponent,
     NotFoundComponent,
     FooterComponent
   ],
@@ -32,6 +35,7 @@ import { CoreModule } from './core/core.module';
     FormsModule,
     HttpClientModule,
     CoreModule,
+    // SharedModule,
     MDBBootstrapModule.forRoot(),
     ToastrModule.forRoot(),
   ],

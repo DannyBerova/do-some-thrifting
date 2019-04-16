@@ -1,6 +1,6 @@
 <div class="container userprofile">
   <div class="row">
-      <div class="col-4 offset-1">
+      <div class="col-3 ">
     
     <!--Card-->
     <div class="card custom">
@@ -19,27 +19,16 @@
           <p class="card-text">Full Name: {{user.firstName}} {{user.lastName}}</p>
           <p class="card-text">Post count: {{user['posts'].length}}</p>
           <p class="card-text">Phone number: {{user.phoneNumber}}</p>
-          <!-- <p class="card-text">{{user.phoneNumber}}</p>
-            <a [routerLink]="['/post', 'details', post._id]" class="btn btn-md btn-success" color="dark-green">View more...
-              <i class="fas fa-play ml-2"></i>
-            </a> -->
-            <!-- <ng-template [ngIf]="username === post.createdBy['username']">
-            <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md btn-success" color="dark-green">Edit Post
-              <i class="fas fa-play ml-2"></i>
-            </a>
-          </ng-template> -->
-            
         </div>
   
       </div>
-      <!--/.Card-->
-
-      <!-- <div class="col coll-6"*ngFor="let p of user['posts']">
-          <app-post-card [post]="p"></app-post-card>
-
-      </div> -->
-  
-  
+    </div>
+    <div class="col-9">
+        <div class="row">
+    <div class="col-4" *ngFor="let p of user['posts']">
+      <app-card-info [post]="p"></app-card-info>
+    </div>
   </div>
-</div>
+    </div>
+  </div>
 </div>
