@@ -11,7 +11,6 @@ export class SingleUserResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = route.params['id'];
-    console.log(id);
     if (route.url[0].path === 'profile') {
       return this.userService.getSingleUserById(id);
     } else {

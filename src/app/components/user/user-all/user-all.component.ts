@@ -18,7 +18,6 @@ export class UserAllComponent implements OnInit {
     private toastr: ToastrService,
   ) { 
     this.users = this.route.snapshot.data['users']['users'];
-    console.log(this.route.snapshot.data)
   }
 
   ngOnInit() {

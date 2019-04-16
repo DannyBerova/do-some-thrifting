@@ -4,7 +4,6 @@ import { IComment } from 'src/app/components/shared/models/IComment';
 import { Observable } from 'rxjs';
 
 const BASE_URL = 'https://do-some-thrifting-db.herokuapp.com/';
-// const BASE_URL = 'https://localhost5000/';
 
 const createC = 'comment/create';
 const getAllByPost = 'comment/allByPost/';

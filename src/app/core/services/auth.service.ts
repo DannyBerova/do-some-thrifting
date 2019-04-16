@@ -8,9 +8,6 @@ export class AuthService {
   private readonly loginUrl = 'https://do-some-thrifting-db.herokuapp.com/auth/login';
   private readonly registerUrl = 'https://do-some-thrifting-db.herokuapp.com/auth/register';
 
-  // private readonly loginUrl = 'https://localhost5000/auth/login';
-  // private readonly registerUrl = 'https://localhost5000/auth/register';
-
   constructor(
     private http: HttpClient
   ) {  }

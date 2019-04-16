@@ -4,11 +4,9 @@ import { Observable } from 'rxjs';
 import { IPost } from 'src/app/components/shared/models/IPost';
 
 const BASE_URL = 'https://do-some-thrifting-db.herokuapp.com/';
-// const BASE_URL = 'https://localhost5000/';
 
 const createP = 'post/create';
 const getAllP = 'post/all';
-const getMineP = 'post/mine'; //not implemented
 const getDetails = 'post/details/';
 const editDetails = 'post/edit/';
 const deleteP = 'post/remove/';
@@ -26,10 +24,6 @@ export class PostService {
 
   getAllPosts(): Observable<Array<IPost>> {
     return this.http.get<Array<IPost>>(BASE_URL + getAllP);
-  }
-
-  getMinePosts(): Observable<Array<IPost>> {
-    return this.http.get<Array<IPost>>(getMineP);
   }
 
   getSinglePostById(id: string): Observable<IPost> {

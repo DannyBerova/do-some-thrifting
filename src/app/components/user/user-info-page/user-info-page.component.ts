@@ -10,14 +10,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserInfoPageComponent implements OnInit {
 
-  user: IRegisterUser
+  user: IRegisterUser;
+  ifNotPosts: boolean;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
   ) { 
     this.user = this.route.snapshot.data['user']['user'];
-    console.log(this.route.snapshot.data)
+    this.ifNotPosts = this.user['posts'].length === 0;
   }
 
   ngOnInit() {

@@ -25,11 +25,14 @@
   
       </div>
     </div>
-    <div class="col-md-9 mb-3 postscol">
+    <div class="col-md-9 xs-12 postscol">
       <h5>User's posts:</h5>
       <hr>
         <div class="row">
-    <div class="col-4 mb-6" *ngFor="let p of user['posts']">
+          <ng-template [ngIf]="ifNotPosts">
+            <h4 class="noposts">No posts added for this user.</h4>
+          </ng-template>
+    <div class="col-md-4 xs-12" *ngFor="let p of user['posts']">
       <app-card-info [post]="p"></app-card-info>
     </div>
   </div>

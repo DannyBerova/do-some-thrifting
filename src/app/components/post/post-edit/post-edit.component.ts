@@ -66,7 +66,6 @@ export class PostEditComponent {
           createdBy: result.createdBy.username,
           createdOn: result.createdOn,
         });
-        console.log(this.form.value)
       });
     });
   }
@@ -82,7 +81,6 @@ export class PostEditComponent {
     const img = this.form.value.images !== '' ? this.form.value.images : this.defaultPicture;
     valueForm.images = [img];
     valueForm._id = this.id;
-    console.log(valueForm)
     this.postService.editSinglePostById(this.id, valueForm)
     .subscribe((data) => {
       this.router.navigate([ `/post/details/${this.id}` ]);

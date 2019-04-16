@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IRegisterUser } from '../../shared/models/IRegisterUser';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';

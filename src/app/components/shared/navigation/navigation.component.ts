@@ -37,13 +37,4 @@ export class NavigationComponent implements DoCheck {
     this.router.navigate(['/home']);
   }
 
-  // is() {
-  //   console.log(this.authService.isAuthenticated())
-  //   return this.authService.isAuthenticated;
-  // }
-
-  // get isAdmin() {
-  //   return this.authService.isAdmin;
-  // }
-
 }

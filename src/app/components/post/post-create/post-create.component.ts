@@ -58,7 +58,6 @@ export class PostCreateComponent {
     const valueForm = this.form.value;
     const img = this.form.value.images !== '' ? this.form.value.images : this.defaultPicture;
     valueForm.images = [img];
-    console.log(valueForm)
     this.postService.createPost(valueForm)
     .subscribe((data) => {
       this.router.navigate([ '/post/all' ]);

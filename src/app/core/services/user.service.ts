@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { IRegisterUser } from 'src/app/components/shared/models/IRegisterUser';
 
 const BASE_URL = 'https://do-some-thrifting-db.herokuapp.com/';
-// const BASE_URL = 'https://localhost5000/';
 
 const getAllUsers = 'user/all';
 const getDetails = 'user/details/';

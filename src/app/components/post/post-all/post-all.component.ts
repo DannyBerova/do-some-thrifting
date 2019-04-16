@@ -16,7 +16,6 @@ export class PostAllComponent implements OnInit {
   ) { 
     this.postService.getAllPosts().subscribe(data => {
       this.posts = data['posts'];
-      console.log(this.posts)
     });
   }
 

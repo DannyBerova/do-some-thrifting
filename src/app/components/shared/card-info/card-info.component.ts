@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './card-info.component.html',
   styleUrls: ['./card-info.component.scss']
 })
-export class CardInfoComponent{
+export class CardInfoComponent {
 
   @Input() post: IPost;
   username: string;
