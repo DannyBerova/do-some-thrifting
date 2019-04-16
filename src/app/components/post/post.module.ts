@@ -14,6 +14,8 @@ import { PostDeleteComponent } from './post-delete/post-delete.component';
 import { CardsFreeModule } from 'angular-bootstrap-md';
 import { SinglePostResolver } from 'src/app/core/resolvers/post-details.resolver';
 import { CommentModule } from '../comment/comment.module';
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { CommentModule } from '../comment/comment.module';
   ],
   imports: [
     CommonModule,
-    // HttpClientModule,
+    SharedModule,
     ReactiveFormsModule,
     PostRoutingModule,
     CardsFreeModule,
