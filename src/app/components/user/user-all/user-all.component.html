@@ -1,3 +1,23 @@
-<p>
-  user-all works!
-</p>
+<div class="container">
+  <div class="row">
+      <table class="table table-striped table-responsive-md btn-table" mdbTable responsive="true" hover="true">
+          <thead class="black white-text">
+            <tr>
+              <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr mdbTableCol *ngFor="let user of users; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{user.username}}</td>
+              <td>{{user._id}}</td>
+              <td>{{user.firstName}} {{user.lastName}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.phoneNumber}}</td>
+              <td>{{user['isBlocked'].toString() | uppercase}}</td>
+              <td><button type="button" class="btn btn-success btn-sm m-0" routerLink="/user/profile/{{user._id}}">Button</button></td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+</div>

@@ -51,6 +51,7 @@ export class PostDetailsComponent {
     console.log(creator)
     this.commentService.deleteComment(id, creator)
       .subscribe(() => {
+        this.toastr.success("Comment deleted");
         this.loadComments();
       })
   }

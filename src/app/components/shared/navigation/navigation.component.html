@@ -16,6 +16,11 @@
           <li class="nav-item" routerLinkActive="active" >
             <a class="nav-link waves-light" mdbWavesEffect routerLink="/post/create">Add Post</a>
           </li>
+        <ng-template [ngIf]="isAdmin">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link waves-light" routerLink="/user/all" mdbWavesEffect>Users<span class="sr-only">(current)</span></a>
+          </li>
+        </ng-template>   
         </ul>
     </ng-template>
       <!-- Links -->
@@ -28,11 +33,15 @@
             <li class="nav-item" routerLinkActive="active">
               <a class="nav-link waves-light" routerLink="/auth/register"  mdbWavesEffect>Register</a>
             </li>
-          </ng-template>      
+          </ng-template> 
+   
   
           <ng-template [ngIf]="isLoggedIn">
             <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link waves-light" (click)="logout()" mdbWavesEffect><mdb-icon fas icon="sign-out-alt"></mdb-icon>Logout</a>
+                <a class="nav-link waves-light" routerLink="/user/profile/{{userId}}" mdbWavesEffect>Profile<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link waves-light" (click)="logout()" mdbWavesEffect><mdb-icon fas icon="sign-out-alt"></mdb-icon>Logout</a>
             </li>
           </ng-template>   
       </ul>

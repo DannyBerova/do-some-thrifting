@@ -6,10 +6,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { SingleUserResolver } from 'src/app/core/resolvers/user-details.resolver';
 import { UserInfoPageComponent } from './user-info-page/user-info-page.component';
+import { UserAllResolver } from 'src/app/core/resolvers/user-all.resolver';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'all' },
-  { path: 'all', component: UserAllComponent, canActivate: [AdminGuard] },
+  { path: 'all', component: UserAllComponent, canActivate: [AdminGuard], resolve: { users: UserAllResolver }},
   
   { path: 'profile/:id', component: UserInfoPageComponent, canActivate: [AuthGuard], resolve: { user: SingleUserResolver }},
   { path: 'mine', component: UserProfileComponent, canActivate: [AuthGuard], resolve: { user: SingleUserResolver }},

@@ -7,6 +7,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { SingleUserResolver } from 'src/app/core/resolvers/user-details.resolver';
 import { CardsFreeModule } from 'angular-bootstrap-md';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     SharedModule,
     CardsFreeModule,
     UserRoutingModule

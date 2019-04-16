@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IRegisterUser } from '../../shared/models/IRegisterUser';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -13,7 +12,6 @@ export class UserInfoPageComponent implements OnInit {
 
   user: IRegisterUser
   constructor(
-    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,

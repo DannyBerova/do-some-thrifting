@@ -9,48 +9,30 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/shared/navigation/navigation.component';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
-// import { AuthService } from './core/services/auth.service';
-// import { JwtInterceptorService } from './core/interceptors/jwt-interceptor.service';
-// import { ResponceHandlerInterceptorService } from './core/interceptors/responce-handler.service';
 import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { CoreModule } from './core/core.module';
-// import { SharedModule } from './components/shared/shared.module';
-// import { PostCardInfoComponent } from './components/shared/post-card-info/post-card-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HomeComponent,
-    // PostCardInfoComponent,
     NotFoundComponent,
     FooterComponent
   ],
   imports: [
     AppRoutingModule,
-    // BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     CoreModule,
-    // SharedModule,
     MDBBootstrapModule.forRoot(),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({positionClass: 'toast-bottom-right',}),
+    // ToastContainerModule,
   ],
   providers: [
-    // AuthService,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: JwtInterceptorService,
-    //   multi: true
-    // },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: ResponceHandlerInterceptorService,
-    //   multi: true
-    // }
   ],
   bootstrap: [AppComponent]
 })

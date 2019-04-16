@@ -1,8 +1,10 @@
 <div class="container userprofile">
   <div class="row">
-      <div class="col-md-3 mb-3">
+      <div class="col-md-3 mb-3 profile">
     
     <!--Card-->
+    <h5>User info:</h5>
+      <hr>
     <div class="card custom">
 
         <!--Card image-->
@@ -13,19 +15,21 @@
         <!--Card content-->
         <div class="card-body">
           <!--Title-->
-          <h4 class="card-title">Username: {{user.username}}</h4>
-          <h4 class="card-title">Email: {{user.email}}</h4>
+          <h5 class="card-title">Username: {{user.username}}</h5>
+          <p class="card-title">Email: {{user.email}}</p>
           <!--Text-->
           <p class="card-text">Full Name: {{user.firstName}} {{user.lastName}}</p>
-          <p class="card-text">Post count: {{user['posts'].length}}</p>
           <p class="card-text">Phone number: {{user.phoneNumber}}</p>
+          <p class="card-text">Posts count: {{user['posts'].length}}</p>
         </div>
   
       </div>
     </div>
-    <div class="col-md-9 mb-3">
+    <div class="col-md-9 mb-3 postscol">
+      <h5>User's posts:</h5>
+      <hr>
         <div class="row">
-    <div class="col-4" *ngFor="let p of user['posts']">
+    <div class="col-4 mb-6" *ngFor="let p of user['posts']">
       <app-card-info [post]="p"></app-card-info>
     </div>
   </div>

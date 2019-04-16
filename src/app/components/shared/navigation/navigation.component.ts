@@ -12,18 +12,23 @@ export class NavigationComponent implements DoCheck {
 
   isLoggedIn: boolean;
   isAdmin: boolean;
+  userId: string;
   constructor(
     private authService: AuthService,
     private router: Router,
     public toastr: ToastrService
   ) { 
-    this.isLoggedIn = this.authService.isAuthenticated();
-    this.isAdmin = this.authService.isAdmin();
+    this.initNav()
   }
 
   ngDoCheck() {
+    this.initNav()
+  }
+
+  initNav() {
     this.isLoggedIn = this.authService.isAuthenticated();
     this.isAdmin = this.authService.isAdmin();
+    this.userId = this.authService.getLoggedUserId();
   }
 
   logout() {

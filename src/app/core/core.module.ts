@@ -6,11 +6,13 @@ import { SinglePostResolver } from './resolvers/post-details.resolver';
 import { AuthService } from './services/auth.service';
 import { PostService } from './services/post.service';
 import { SingleUserResolver } from './resolvers/user-details.resolver';
+import { UserAllResolver } from './resolvers/user-all.resolver';
 
 @NgModule({
   providers: [
     SinglePostResolver,
     SingleUserResolver,
+    UserAllResolver,
     AuthService,
     PostService,
     JwtInterceptorService,
