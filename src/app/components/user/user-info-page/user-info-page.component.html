@@ -1,3 +1,45 @@
-<p>
-  user-info-page works!
-</p>
+<div class="container userprofile">
+  <div class="row">
+      <div class="col-4 offset-1">
+    
+    <!--Card-->
+    <div class="card custom">
+
+        <!--Card image-->
+        <div class="view overlay">
+          <img src="{{user.avatar}}" class="card-img-top cardimage" alt="">
+        </div>
+  
+        <!--Card content-->
+        <div class="card-body">
+          <!--Title-->
+          <h4 class="card-title">Username: {{user.username}}</h4>
+          <h4 class="card-title">Email: {{user.email}}</h4>
+          <!--Text-->
+          <p class="card-text">Full Name: {{user.firstName}} {{user.lastName}}</p>
+          <p class="card-text">Post count: {{user['posts'].length}}</p>
+          <p class="card-text">Phone number: {{user.phoneNumber}}</p>
+          <!-- <p class="card-text">{{user.phoneNumber}}</p>
+            <a [routerLink]="['/post', 'details', post._id]" class="btn btn-md btn-success" color="dark-green">View more...
+              <i class="fas fa-play ml-2"></i>
+            </a> -->
+            <!-- <ng-template [ngIf]="username === post.createdBy['username']">
+            <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md btn-success" color="dark-green">Edit Post
+              <i class="fas fa-play ml-2"></i>
+            </a>
+          </ng-template> -->
+            
+        </div>
+  
+      </div>
+      <!--/.Card-->
+
+      <!-- <div class="col coll-6"*ngFor="let p of user['posts']">
+          <app-post-card [post]="p"></app-post-card>
+
+      </div> -->
+  
+  
+  </div>
+</div>
+</div>

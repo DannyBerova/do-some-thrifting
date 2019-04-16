@@ -40,8 +40,8 @@ export class PostService {
     return this.http.post<IPost>(BASE_URL + editDetails + id, body);
   }
 
-  deletePost(id: string, obj: Object) {
-    return this.http.delete( BASE_URL + deleteP + id, obj);
+  deletePost(id: string, creator: string) {
+    return this.http.delete( BASE_URL + deleteP + id + '/' + creator);
   }
 
   starUnstarPost(postId) {

@@ -26,8 +26,8 @@ export class PostDeleteComponent implements OnInit {
   }
 
   deletePost() {
-    const obj = {creatorId: localStorage.getItem('userId')}
-    this.postService.deletePost(this.id, obj).subscribe(data => {
+    const creator = localStorage.getItem('userId');
+    this.postService.deletePost(this.id, creator).subscribe(data => {
       this.router.navigate(['/post/all']);
     })
     console.log("delete")

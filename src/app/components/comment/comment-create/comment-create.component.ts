@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IComment } from '../../shared/models/IComment';
@@ -14,6 +14,8 @@ export class CommentCreateComponent implements OnInit {
 
   @Input() postId: string;
   @Input() postCreatorId: string;
+  @Output('onCreateComment') commentEmitter = new EventEmitter<void>();
+  
   form: FormGroup = new FormGroup({});
   constructor(
     private authService: AuthService,
@@ -52,7 +54,8 @@ export class CommentCreateComponent implements OnInit {
     this.commentService.createComment(commentInfo)
       .subscribe((comment) => {
         this.form.reset();
-        this.toastr.success('You added a comment to this post!')
+        // this.toastr.success('You added a comment to this post!')
+        this.commentEmitter.emit();
       });
   }
 

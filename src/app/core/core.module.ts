@@ -5,10 +5,12 @@ import { ResponceHandlerInterceptorService } from './interceptors/responce-handl
 import { SinglePostResolver } from './resolvers/post-details.resolver';
 import { AuthService } from './services/auth.service';
 import { PostService } from './services/post.service';
+import { SingleUserResolver } from './resolvers/user-details.resolver';
 
 @NgModule({
   providers: [
     SinglePostResolver,
+    SingleUserResolver,
     AuthService,
     PostService,
     JwtInterceptorService,

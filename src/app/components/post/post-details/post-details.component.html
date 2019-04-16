@@ -2,14 +2,14 @@
   <div class="row">
       <br>
       <br>
-    <div class="col-md-8 mb-3 toppart">
+    <div class="col-md-7 mb-3 toppart">
             <figure class="figure zoom topimage">
                 <img src="{{post.images[0]}}" class="figure-img img-fluid z-depth-1"
                   alt="..." style="width: 80%">
               </figure>
     </div>
         <!--Card content-->
-        <div class="col-md-4 mb-3">
+        <div class="col-md-5 mb-3">
         <div class="card-body">
           <!--Title-->
           <h4 class="card-title">Title: 
@@ -46,12 +46,31 @@
         </div>
       </div>
     </div>
-        <app-comment-create [postId]="post._id" [postCreatorId]="post['createdBy']['_id']" >
+        <app-comment-create (onCreateComment)="loadComments()" [postId]="post._id" [postCreatorId]="post['createdBy']['_id']" >
       </app-comment-create>
         <hr>
-        <ul >
-          <li *ngFor="let comm of comments">{{comm | json}}</li>
-        </ul>
+        <ol >
+          <li *ngFor="let comm of comments">  |
+              <mdb-card class="col-md-9">
+                  <mdb-card-body >
+                    <mdb-card-title>
+                      <h5>"{{comm.content}}"</h5>
+                    </mdb-card-title>
+                    <mdb-card-text>
+                      <span> Comment by: {{comm.creatorUsername}}  created on: {{comm.createdOn | date}}</span>
+                      >
+                    <span class="flex-row">
+                        <ng-template [ngIf]="isAdmin || comm.creatorUsername === username">
+                        <button (click)="deleteComment(comm['_id'])" class="btn btn-small btn-light" color="dark-green">Delete
+                          <i class="fas fa-archive ml-2"></i>
+                        </button>
+                      </ng-template>
+                      </span>
+                      </mdb-card-text>
+                  </mdb-card-body>
+                </mdb-card>
+          </li>
+        </ol>
 </div>
 
 

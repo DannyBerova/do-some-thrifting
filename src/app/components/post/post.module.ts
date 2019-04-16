@@ -21,7 +21,9 @@ import { CommentModule } from '../comment/comment.module';
     PostAllComponent, 
     PostDetailsComponent, 
     PostEditComponent, 
-    PostMineComponent, PostCardComponent, PostDeleteComponent
+    PostMineComponent, 
+    PostCardComponent, 
+    PostDeleteComponent
   ],
   imports: [
     CommonModule,
