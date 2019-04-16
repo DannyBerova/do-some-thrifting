@@ -7,8 +7,12 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   {
-    path: 'user',
+    path: 'auth',
     loadChildren: './components/authentication/authentication.module#AuthenticationModule',
+  },
+  {
+    path: 'user',
+    loadChildren: './components/user/user.module#UserModule',
   },
   {
     path: 'post',

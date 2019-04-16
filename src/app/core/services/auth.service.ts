@@ -35,6 +35,10 @@ export class AuthService {
     return localStorage.getItem('user');
   }
 
+  getLoggedUserId() {
+    return localStorage.getItem('userId');
+  }
+
   isAdmin() {
     return localStorage.getItem('isAdmin') === 'true';
   }

@@ -1,0 +1,30 @@
+<div class="container" >
+    <div style="height:60vh">
+        <div class="flex-center flex-column">
+          <h1 class="text-red animated fadeIn mb-4 font-weight-bolder">Danger zone:</h1>
+      
+          <mdb-card>
+              <mdb-card-body>
+                <mdb-card-title>
+                  <h4>Delete post "{{name}}"</h4>
+                </mdb-card-title>
+                <mdb-card-text>Are you sure you want to delete this post? It is permanent!</mdb-card-text>
+                <div class="flex-row">
+                    <a [routerLink]="['/post', 'details', id]" class="btn btn-md btn-success" color="dark-green">Cancel 
+                      <i class="fas fa-edit ml-2"></i>
+                    </a>
+                    <a (click)="deletePost()" class="btn btn-md btn-danger" color="dark-green">Delete
+                      <i class="fas fa-archive ml-2"></i>
+                    </a>
+                </div>
+              </mdb-card-body>
+            </mdb-card>
+          <div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row center" >
+    
+</div>

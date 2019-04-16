@@ -60,7 +60,7 @@ export class PostEditComponent {
         this.form.setValue({
           title: result.title,
           content: result.content,
-          price: +result.price,
+          price: result.price,
           images: result.images[0],
           category: result.category,
           createdBy: result.createdBy.username,

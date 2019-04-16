@@ -11,7 +11,7 @@ const getAllP = 'post/all';
 const getMineP = 'post/mine'; //not implemented
 const getDetails = 'post/details/';
 const editDetails = 'post/edit/';
-const deleteP = 'post/delete/';
+const deleteP = 'post/remove/';
 const starUnstar = 'post/star';
 
 @Injectable({
@@ -40,8 +40,8 @@ export class PostService {
     return this.http.post<IPost>(BASE_URL + editDetails + id, body);
   }
 
-  deletePost(id) {
-    return this.http.delete( BASE_URL + deleteP + id);
+  deletePost(id: string, obj: Object) {
+    return this.http.delete( BASE_URL + deleteP + id, obj);
   }
 
   starUnstarPost(postId) {
