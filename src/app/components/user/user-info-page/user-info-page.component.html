@@ -5,7 +5,7 @@
     <!--Card-->
     <h5>User info:</h5>
       <hr>
-    <div class="card custom">
+    <div class="card align-items-center custom">
 
         <!--Card image-->
         <div class="view overlay">
@@ -13,7 +13,7 @@
         </div>
   
         <!--Card content-->
-        <div class="card-body">
+        <div class="card-body text-center">
           <!--Title-->
           <h5 class="card-title">Username: {{user.username}}</h5>
           <p class="card-title">Email: {{user.email}}</p>
@@ -21,6 +21,12 @@
           <p class="card-text">Full Name: {{user.firstName}} {{user.lastName}}</p>
           <p class="card-text">Phone number: {{user.phoneNumber}}</p>
           <p class="card-text">Posts count: {{user['posts'].length}}</p>
+          <ng-template [ngIf]="isAdmin">
+            <hr>
+            <button type="button" (click)="blockUnblockUser()" class="btn btn-danger btn-sm m-0" routerLink="/user/profile/{{user._id}}">{{blockUnblock}}</button>
+          </ng-template>
+          <hr>
+          <p class="card-text">User status: {{activeStatus}}</p>
         </div>
   
       </div>

@@ -10,13 +10,21 @@
         </div>
   
         <!--Card content-->
-        <div class="card-body">
+        <div class="card-body text-center">
           <!--Title-->
           <h4 class="card-title">{{post.title}}</h4>
           <!--Text-->
-          <p class="card-text">Push messaging provides a simple and effective way to re-engage with your users
-            and in this
-            tutorial you'll learn how to add push notifications to your web app</p>
+          <p class="card-text">{{post.content | slice : 0 : 60}}...</p>
+          <p class="card-text">{{post.price | currency: 'EUR'}}</p>
+          <div class="float-left col-md-12 pt-3 pl-2">
+              <hr>
+              <a class="green-text">
+                <i class=" far fa-thumbs-up pr-1" ></i>{{ post['stars'].length}}
+              </a>
+              <a class="light-blue-text ml-3">
+                <i class="far fa-comments pr-1"></i>{{ post['comments'].length }}
+              </a>
+            </div>
             <a [routerLink]="['/post', 'details', post._id]" class="btn btn-md btn-success" color="dark-green">View more...
               <i class="fas fa-play ml-2"></i>
             </a>

@@ -8,7 +8,7 @@ const BASE_URL = 'https://do-some-thrifting-db.herokuapp.com/';
 const getAllUsers = 'user/all';
 const getDetails = 'user/details/';
 const destroyUser = 'user/destroy/';
-const blockUnblock = 'user/block';
+const blockUnblock = 'user/block/';
 @Injectable({
   providedIn: 'root'
 })

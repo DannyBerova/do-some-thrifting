@@ -10,7 +10,8 @@ const getAllP = 'post/all';
 const getDetails = 'post/details/';
 const editDetails = 'post/edit/';
 const deleteP = 'post/remove/';
-const starUnstar = 'post/star';
+const starUnstar = 'post/star/';
+const status = 'post/status/';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,10 @@ export class PostService {
   }
 
   starUnstarPost(postId) {
-    return this.http.post(BASE_URL + starUnstar, postId);
+    return this.http.post(BASE_URL + starUnstar + postId, {});
+  }
+
+  changeStatus(postId, data) {
+    return this.http.post(BASE_URL + status + postId, data);
   }
 }

@@ -40,6 +40,10 @@ export class AuthService {
     return localStorage.getItem('isAdmin') === 'true';
   }
 
+  isBlocked() {
+    return localStorage.getItem('isBlocked') === 'true';
+  }
+
   getJwtToken() {
     return localStorage.getItem('token') ? localStorage.getItem('token') : '';
   }

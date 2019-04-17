@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row details">
       <br>
       <br>
     <div class="col-md-7 mb-3 toppart">
@@ -7,6 +7,35 @@
                 <img src="{{post.images[0]}}" class="figure-img img-fluid z-depth-1"
                   alt="..." style="width: 80%">
               </figure>
+              <div>
+                
+                <div class="float-left col-md-12 pt-3 pl-2">
+                    <hr>
+                    <a class="red-text" (click)="starUnstar()">
+                      <i class=" {{thumb}} fa-thumbs-up pr-1" ></i>{{ starsCount}}
+                    </a>
+                    <a class="light-blue-text ml-3">
+                      <i class="far fa-comments pr-1"></i>{{ comments.length }}
+                    </a>
+                  </div>
+                  <ng-template [ngIf]="isCreator">
+                  <div class="float-left col-md-9 pt-3 pl-2">
+                    <form [formGroup]="testForm">
+                    <select class="browser-default custom-select col-md-6" formControlName="testSelect" id="st">
+                      <option value="onstock">On Stock</option>
+                      <option value="reserved">Reserved</option>
+                      <option value="sold">Sold</option>
+                    </select>
+                    <span><button type="submit" class="btn btn-md btn-default" (click)="changeStatus()" mdbWavesEffect>Change Status</button></span>
+                  </form>
+                </div>
+              </ng-template>
+              <div class="float-left col-md-12 pt-3 pl-2">
+                  <hr>
+
+                  <h6 >Status: {{post['status'] | uppercase}}</h6>
+                </div>
+      </div>
     </div>
         <!--Card content-->
         <div class="col-md-5 mb-3">
@@ -20,9 +49,9 @@
               <span class="font-weight-bolder">"{{post.content}}"</span>
           </p>
           <hr>
-          <p class="card-text">Price: "{{post.price}} $"</p>
+          <p class="card-text">Price: {{post.price | currency: 'EUR'}}</p>
           <hr>
-          <p class="card-text">"Post by: {{post['createdBy']['username']}} created on {{post.createdOn | date}}"</p>
+          <p class="card-text">Post by: {{post['createdBy']['username']}} created on {{post.createdOn | date}}</p>
           <hr>
           <p class="card-text">Category: "{{post.category}}"</p>
           <hr>
@@ -32,7 +61,7 @@
               </a>
           </p>
           <hr>
-          <p class="card-text">Status: "{{post['status'] | uppercase}}"</p>
+          <!-- <p class="card-text">Status: "{{post['status'] | uppercase}}"</p> -->
           <ng-template [ngIf]="isCreator">
             <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md btn-success" color="dark-green">Edit 
               <i class="fas fa-edit ml-2"></i>

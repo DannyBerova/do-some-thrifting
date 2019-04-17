@@ -15,7 +15,7 @@ export class PostAllComponent implements OnInit {
     private postService: PostService
   ) { 
     this.postService.getAllPosts().subscribe(data => {
-      this.posts = data['posts'];
+      this.posts = data['posts'].filter(p => p['status'] !== 'sold' && p.createdBy.isBlocked === false);
     });
   }
 
