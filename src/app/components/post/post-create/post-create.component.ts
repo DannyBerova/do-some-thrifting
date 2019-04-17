@@ -27,11 +27,13 @@ export class PostCreateComponent {
     this.form = this.fb.group({
       title: this.fb.control('', [
         Validators.required, 
-        Validators.pattern(this.titlePatern),
+        Validators.minLength(3),
+        Validators.maxLength(50),
       ]),
       content: this.fb.control('', [
         Validators.required, 
-        Validators.pattern(this.contentPatern),
+        Validators.minLength(10),
+        Validators.maxLength(420),
       ]),
       price: this.fb.control('', [
         Validators.required,
@@ -40,7 +42,7 @@ export class PostCreateComponent {
       ]),
       images: this.fb.control('', [
         // Validators.required, 
-        Validators.pattern('^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^/#?]+)+\.(?:jpg|gif|png)$')
+        Validators.pattern('^https:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^/#?]+)+\.(?:jpg|gif|png)$')
       ]),
       category: this.fb.control('other', [
         Validators.required,
@@ -53,6 +55,12 @@ export class PostCreateComponent {
   get price() { return this.form.get('price'); }
   get images() { return this.form.get('images'); }
   get category() { return this.form.get('category'); }
+
+  get titleErrorMessage() { return 'Title must be between 3 and 50 symbols.' }
+  get contentErrorMessage() { return 'Content must be between 10 and 420 symbols.' }
+  get priceErrorMessage() { return 'Price must be positive number between 0 and 2000' }
+  get urlErrorMessage() { return 'Provide valid url structure - starts with https:// and ends with .jpg, .png or .gif' }
+  get categoryErrorMessage() { return 'Choose valid category.' }
 
   onSubmitHandler() {
     const valueForm = this.form.value;

@@ -22,7 +22,7 @@
                 <small 
                     class="invalid-feedback" 
                     *ngIf="username.touched && username.invalid">
-                    Username is invalid
+                    {{usernameErrorMessage}}
                 </small>
                 </div>
             
@@ -40,7 +40,7 @@
                     <small 
                         class="invalid-feedback" 
                         *ngIf="password.touched && password.invalid">
-                        <!-- {{ passwordErrorMessage }} -->
+                        {{ passwordErrorMessage }}
                     </small>
                     </div>
                     <div class="col">
@@ -56,7 +56,7 @@
                         <small 
                         class="invalid-feedback" 
                         *ngIf="confirmPassword.touched && confirmPassword.invalid">
-                        <!-- {{ confirmPasswordErrorMessage }} -->
+                        {{ confirmPasswordErrorMessage }}
                     </small>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <small 
                         class="invalid-feedback" 
                         *ngIf="firstName.touched && firstName.invalid">
-                        <!-- {{ firstNameErrorMessage }} -->
+                        {{ firstNameErrorMessage }}
                     </small>
                 </div>
                 <div class="col">
@@ -89,7 +89,7 @@
                     <small 
                         class="invalid-feedback" 
                         *ngIf="lastName.touched && lastName.invalid">
-                        <!-- {{ lastNameErrorMessage }} -->
+                        {{ lastNameErrorMessage }}
                     </small>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                 <small 
                     class="invalid-feedback" 
                     *ngIf="email.touched && email.invalid">
-                    <!-- {{ emailErrorMessage }} -->
+                    {{ emailErrorMessage }}
                 </small>
             </div>
             
@@ -124,7 +124,7 @@
                 <small 
                     class="invalid-feedback" 
                     *ngIf="phoneNumber.touched && phoneNumber.invalid">
-                    <!-- {{ phoneNumberErrorMessage }} -->
+                    {{ phoneNumberErrorMessage }}
                 </small>
             </div>
             <div class="mb-4">

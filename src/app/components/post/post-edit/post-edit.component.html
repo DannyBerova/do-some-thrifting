@@ -9,7 +9,7 @@
             (submit)="onSubmitHandler()">
         
             <p class="h4 mb-4">Edit Post</p>
-            <pre>{{form.value | json}}</pre>
+            <!-- <pre>{{form.value | json}}</pre> -->
         
                 <!-- Title -->
                 <div class="mb-4">
@@ -23,7 +23,7 @@
                 <small 
                     class="invalid-feedback" 
                     *ngIf="title.touched && title.invalid">
-                    Title is invalid
+                    {{titleErrorMessage}}
                 </small>
                 </div>
 
@@ -39,7 +39,7 @@
                 <small 
                     class="invalid-feedback" 
                     *ngIf="content.touched && content.invalid">
-                    Content is invalid
+                    {{contentErrorMessage}}
                 </small>
                 </div>
             
@@ -56,7 +56,7 @@
                 <small 
                     class="invalid-feedback" 
                     *ngIf="price.touched && price.invalid">
-                    <!-- {{ phoneNumberErrorMessage }} -->
+                    {{ priceErrorMessage }}
                 </small>
             </div>
             <div class="mb-4">
@@ -71,7 +71,7 @@
                 <small 
                     class="invalid-feedback" 
                     *ngIf="images.touched && images.invalid">
-                    <!-- {{ emailErrorMessage }} -->
+                    {{ urlErrorMessage }}
                 </small>
             </div>
             <div class="mb-4">

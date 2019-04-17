@@ -13,9 +13,11 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class RegisterComponent {
 
-  private phoneNumberPattern = /^\d{9,}$/;
+  private phoneNumberPattern = '^[0-9]{9,20}$';
   private usernamePattern = /^[A-Za-z0-9._]+$/;
   private namePattern = /^[A-Z][a-z]+$/;
+  private emailPattern = '^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$';
+  private urlPattern = '^https:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^/#?]+)+\.(?:jpg|gif|png)$'
 
   form: FormGroup = new FormGroup({});
 
@@ -29,7 +31,7 @@ export class RegisterComponent {
       username: this.fb.control('', [
         Validators.required, 
         Validators.minLength(5),
-        Validators.maxLength(20),
+        Validators.maxLength(30),
         Validators.pattern(this.usernamePattern),
       ]),
       password: this.fb.control(''),
@@ -37,25 +39,25 @@ export class RegisterComponent {
       firstName: this.fb.control('', [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(14),
+        Validators.maxLength(30),
         Validators.pattern(this.namePattern),
       ]),
       lastName: this.fb.control('', [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(14),
+        Validators.maxLength(30),
         Validators.pattern(this.namePattern),
       ]),
       email: this.fb.control('', [
         Validators.required,
-        Validators.email
+        Validators.pattern(this.emailPattern),
       ]),
       phoneNumber: this.fb.control('', [
         Validators.required,
         Validators.pattern(this.phoneNumberPattern),
       ]),
       avatar: this.fb.control('', [
-        Validators.required,
+        Validators.pattern(this.urlPattern)
       ]),
     });
 
@@ -85,13 +87,13 @@ export class RegisterComponent {
   get phoneNumber() { return this.form.get('phoneNumber'); }
   get avatar() { return this.form.get('avatar'); }
 
-  // get usernameErrorMessage() { return this.errorService.standartErrorMessage('Username', this.username.errors); }
-  // get passwordErrorMessage() { return this.errorService.passwordErrorMessage(this.password.errors); }
-  // get confirmPasswordErrorMessage() { return this.errorService.passwordErrorMessage(this.confirmPassword.errors, 'Confirm password'); }
-  // get firstNameErrorMessage() { return this.errorService.nameErrorMessage('First name', this.firstName.errors); }
-  // get lastNameErrorMessage() { return this.errorService.nameErrorMessage('Last name', this.lastName.errors); }
-  // get emailErrorMessage() { return this.errorService.standartErrorMessage('Email', this.email.errors); }
-  // get phoneNumberErrorMessage() { return this.errorService.phoneNumberErrorMessage('Phone number', this.phoneNumber.errors); }
+  get usernameErrorMessage() { return 'Username must be between 5 and 30 symbols - latin letters, numbers and underscores.' }
+  get passwordErrorMessage() { return 'Password must be between 6 and 30 symbols' }
+  get confirmPasswordErrorMessage() { return 'Passwords must match.' }
+  get firstNameErrorMessage() { return 'First Name must be between 2 and 30 symbols - Only latin letters starting with capital letter' }
+  get lastNameErrorMessage() { return 'Last Name must be between 2 and 30 symbols - Only latin letters starting with capital letter' }
+  get emailErrorMessage() { return 'Provide valid email structure.' }
+  get phoneNumberErrorMessage() { return 'Phone number must be between 9 and 20 symbols, numbers only.' }
 
   onSubmitHandler() {
     const {confirmPassword, ...userModel} = this.form.value;

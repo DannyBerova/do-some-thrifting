@@ -1,14 +1,18 @@
 <div id="home" style="text-align:center">
   <ng-template [ngIf]="isLoggedIn">
-    <h3>
-      Hello, {{username}}!
-    </h3>
+    <div class="card transp">
+
+      <h3 class="text-black card-title">
+        Hello, {{username}}!
+      </h3>
+    </div>
   </ng-template>
   
     <div style="height:60vh">
       <div class="flex-center flex-column">
-        <h1 class="text-black animated fadeIn mb-4 font-weight-bolder">Welcome to the</h1>
-        <h1 class="text-black animated fadeIn mb-4 font-weight-bolder">thrifting zone!</h1>
+
+            <h1 class="text-black mb-4 font-weight-bolder">Welcome to the</h1>
+            <h1 class=" text-black mb-4 font-weight-bolder">thrifting zone!</h1>
     
         <ng-template [ngIf]="isLoggedIn">
             <button type="button" mdbBtn color="dark-green" routerLink="/post/all" mdbWavesEffect >Go To Market</button>
