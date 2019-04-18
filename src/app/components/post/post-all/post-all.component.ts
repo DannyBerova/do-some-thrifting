@@ -15,7 +15,7 @@ export class PostAllComponent {
   posts: Array<IPost>;
   postsProcessed: Array<IPost>;
   pager: any = {};
-  pagedItems: any[];
+  pagedItems: Array<IPost>;
   term: string = '';
   categoryP: string = 'all';
   isPostsInCat: boolean;
@@ -41,11 +41,12 @@ export class PostAllComponent {
   setPage(page: number) {
     this.pager = this.pagerService.getPager(this.postsProcessed.length, page);
     this.pagedItems = this.postsProcessed.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    // window.location.hash = ''; 
+    //window.location.hash = ''; 
     window.location.hash = 'topOfPage';
   }
 
   searchPosts(tes){
+    this.categoryP = "all";
     if(tes !== '') {
       this.term = tes;
       this.postsProcessed = this.posts.filter(p => p.title.toLowerCase().includes(tes.toLowerCase()));

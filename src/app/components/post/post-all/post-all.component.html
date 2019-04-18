@@ -1,40 +1,40 @@
 <div class="container postlist">
-    <!--Section: Cards-->
-    <div class="row justify-content-center">
+  <div class="row justify-content-center">
+    <div class="col text-center" id="topOfPage">
+      <div>
+        <!--Search-form-->
+        <app-search class="col-md-4" (onSearch)="searchPosts($event)" [term]="term"></app-search>
 
-      <div class="col text-center" id="topOfPage">
-              <!-- <h4>All posts on market:</h4> -->
-              <div><app-search class="col-md-4" (onSearch)="searchPosts($event)" [term]="term"></app-search></div>
-              <div>
-                <ng-template [ngIf]="isPostsInCat && categoryP !== 'all'">
-                  <div>
-                      <p>Filter by category: {{categoryP}} </p>
-
-                  </div>
-                </ng-template>
-                
-                <app-filter-category (onFilter)="filter($event)" [cat]="categoryP"></app-filter-category>
-              </div>
-              <hr>
       </div>
-    </div>
-      <div class="text-center row">
-       <div class="col-md-4 mb-3" *ngFor="let p of pagedItems">
-          <app-card-info [post]="p"></app-card-info>
-    
-            </div>
+      <div>
+        <ng-template [ngIf]="isPostsInCat && categoryP !== 'all'">
+          <div class="justify-content-center">
+              <h6 class="text-center text-success">Filter by category: "{{categoryP}}"" </h6>
           </div>
-          <ng-template [ngIf]="!isPostsInCat && categoryP !== 'all'">
-              <div class="text-center row">
-                  <p>No posts in this category! Click "All"!</p>
+        </ng-template>
+        <!--Filter by category-->
+        <app-filter-category (onFilter)="filter($event)" [cat]="categoryP"></app-filter-category>
 
-              </div>
-            </ng-template>
-  
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <ng-template [ngIf]="!isPostsInCat && categoryP !== 'all'">
+      <div class="row"><h6 class="col-md-12">No posts in this category! Go to <span><button class="btn btn-light btn-sm"
+        (click)="filter('all')">All posts</button></span></h6></div>
+    </ng-template>
+  </div>
+  <div class="text-center row">
+    <div class="col-md-4 mb-3" *ngFor="let p of pagedItems">
+    <!--Post-cards-->
+    <app-card-info [post]="p"></app-card-info>
 
-      <!--Pagination-->
-      <div class="text-center row">
-        <ng-template [ngIf]="pager.totalPages > 1">
+    </div>
+  </div>
+    <!--Pagination-->
+  <div class="text-center row">
+    <ng-template [ngIf]="pager.totalPages > 1">
       <nav  class="d-flex justify-content-center wow fadeIn">
         <ul *ngIf="pager.pages && pager.pages.length" class="pagination pg-dark">
 
@@ -45,7 +45,6 @@
                 </a>
               </li>
 
-          <!--Arrow left-->
           <li  [ngClass]="{disabled:pager.currentPage === 1}" class="page-item disabled">
             <a (click)="setPage(pager.currentPage - 1)" class="page-link" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
@@ -75,6 +74,5 @@
         </ul>
       </nav>
     </ng-template>
-    </div>
-
   </div>
+</div>

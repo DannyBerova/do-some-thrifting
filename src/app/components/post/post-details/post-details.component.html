@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="row details">
+<div class="container details">
+  <div class="row ">
       <br>
       <br>
     <div class="col-md-7 mb-3 toppart">
@@ -86,8 +86,7 @@
                       <h5>"{{comm.content}}"</h5>
                     </mdb-card-title>
                     <mdb-card-text>
-                      <span> Comment by: {{comm.creatorUsername}}  created on: {{comm.createdOn | date}}</span>
-                      >
+                      <span> Comment by: {{comm.creatorUsername}}  created on: {{comm.createdOn | date}} </span>
                     <span class="flex-row">
                         <ng-template [ngIf]="isAdmin || comm.creatorUsername === username">
                         <button (click)="deleteComment(comm['_id'])" class="btn btn-small btn-light" color="dark-green">Delete

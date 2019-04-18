@@ -42,7 +42,7 @@
           <ng-template [ngIf]="ifNotPosts">
             <h4 class="noposts">No posts added for this user.</h4>
           </ng-template>
-    <div class="col-md-4 xs-12" *ngFor="let p of user['posts']">
+    <div class="col-md-4 xs-12 userprofile" *ngFor="let p of user['posts']">
       <app-card-info [post]="p"></app-card-info>
     </div>
   </div>
