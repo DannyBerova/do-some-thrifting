@@ -24,6 +24,10 @@
       <div class="row"><h6 class="col-md-12">No posts in this category! Go to <span><button class="btn btn-light btn-sm"
         (click)="filter('all')">All posts</button></span></h6></div>
     </ng-template>
+    <ng-template [ngIf]="!isPostsInCat && term !== ''">
+        <div class="row"><h6 class="col-md-12">No match found! Go to <span><button class="btn btn-light btn-sm"
+          (click)="filter('all')">All posts</button></span> or search another entry!</h6></div>
+      </ng-template>
   </div>
   <div class="text-center row">
     <div class="col-md-4 mb-3" *ngFor="let p of pagedItems">

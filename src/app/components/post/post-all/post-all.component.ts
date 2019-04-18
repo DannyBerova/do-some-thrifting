@@ -50,6 +50,8 @@ export class PostAllComponent {
     if(tes !== '') {
       this.term = tes;
       this.postsProcessed = this.posts.filter(p => p.title.toLowerCase().includes(tes.toLowerCase()));
+      this.isPostsInCat = this.postsProcessed.length > 0
+
       this.setPage(1);
       this.router.navigate(
         [], 
