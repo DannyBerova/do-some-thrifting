@@ -82,6 +82,7 @@ export class PostAllComponent {
       this.postsProcessed = this.posts;
       this.isPostsInCat = this.postsProcessed.length > 0
     }
+    this.term = ''; //test it
     this.setPage(1);
     
   }
