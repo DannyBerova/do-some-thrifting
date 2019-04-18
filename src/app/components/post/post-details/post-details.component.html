@@ -11,7 +11,7 @@
                 
                 <div class="float-left col-md-12 pt-3 pl-2">
                     <hr>
-                    <a class="red-text" (click)="starUnstar()">
+                    <a class="green-text" (click)="starUnstar()">
                       <i class=" {{thumb}} fa-thumbs-up pr-1" ></i>{{ starsCount}}
                     </a>
                     <a class="light-blue-text ml-3">
@@ -26,7 +26,7 @@
                       <option value="reserved">Reserved</option>
                       <option value="sold">Sold</option>
                     </select>
-                    <span><button type="submit" class="btn btn-md btn-default" (click)="changeStatus()" mdbWavesEffect>Change Status</button></span>
+                    <span><button type="submit" class="btn btn-md btn-light" (click)="changeStatus()" mdbWavesEffect>Change Status</button></span>
                   </form>
                 </div>
               </ng-template>
@@ -56,19 +56,19 @@
           <p class="card-text">Category: "{{post.category}}"</p>
           <hr>
           <p>User info and contact details: 
-              <a [routerLink]="['/user', 'profile', post['createdBy']['_id']]" class="btn btn-md btn-default" color="dark-green">Go to info page 
+              <a [routerLink]="['/user', 'profile', post['createdBy']['_id']]" class="btn btn-md btn-light" >Go to info page 
                 <i class="fas fa-edit ml-2"></i>
               </a>
           </p>
           <hr>
           <!-- <p class="card-text">Status: "{{post['status'] | uppercase}}"</p> -->
           <ng-template [ngIf]="isCreator">
-            <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md btn-success" color="dark-green">Edit 
+            <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md btn-light" >Edit 
               <i class="fas fa-edit ml-2"></i>
             </a>
           </ng-template>
             <ng-template [ngIf]="isCreatorOrAdmin">
-            <a [routerLink]="['/post', 'delete', post._id, post.title.trim()]" class="btn btn-md btn-success" color="dark-green">Delete
+            <a [routerLink]="['/post', 'delete', post._id, post.title.trim()]" class="btn btn-md btn-light">Delete
               <i class="fas fa-archive ml-2"></i>
             </a>
           </ng-template>
@@ -79,7 +79,7 @@
       </app-comment-create>
         <hr>
         <ol >
-          <li *ngFor="let comm of comments">  |
+          <li *ngFor="let comm of comments">  
               <mdb-card class="col-md-10">
                   <mdb-card-body >
                     <mdb-card-title>

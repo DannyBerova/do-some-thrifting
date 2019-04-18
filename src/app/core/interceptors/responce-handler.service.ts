@@ -22,7 +22,6 @@ export class ResponceHandlerInterceptorService implements HttpInterceptor {
          if (success.url.endsWith('login')
          || success.url.endsWith('register')
          || success.url.endsWith('create')
-         || success.url.includes('edit')
          || success.body.message === 'Post deleted successfully!'
          || success.body.message === 'Comment deleted successfully!') {
            this.toastr.success('Success', success.body.message);

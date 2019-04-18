@@ -7,6 +7,7 @@ import { AuthService } from './services/auth.service';
 import { PostService } from './services/post.service';
 import { SingleUserResolver } from './resolvers/user-details.resolver';
 import { UserAllResolver } from './resolvers/user-all.resolver';
+import { PagerService } from './services/pager.service';
 
 @NgModule({
   providers: [
@@ -15,6 +16,7 @@ import { UserAllResolver } from './resolvers/user-all.resolver';
     UserAllResolver,
     AuthService,
     PostService,
+    PagerService,
     JwtInterceptorService,
     ResponceHandlerInterceptorService,
     {

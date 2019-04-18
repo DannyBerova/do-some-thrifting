@@ -7,12 +7,12 @@
     <!-- Collapsible content -->
     <links>
       <!-- Links -->
-      <ng-template [ngIf]="isLoggedIn">
       <ul class="navbar-nav mr-auto ml-4">
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link waves-light" mdbWavesEffect routerLink="/post/all">Posts<span class="sr-only">(current)</span></a>
-          </li>
-
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/post/all">Posts<span class="sr-only">(current)</span></a>
+        </li>
+        
+        <ng-template [ngIf]="isLoggedIn">
           <li class="nav-item" routerLinkActive="active" >
             <a class="nav-link waves-light" mdbWavesEffect routerLink="/post/create">Add Post</a>
           </li>
@@ -21,8 +21,8 @@
             <a class="nav-link waves-light" routerLink="/user/all" mdbWavesEffect>Users<span class="sr-only">(current)</span></a>
           </li>
         </ng-template>   
+      </ng-template>
         </ul>
-    </ng-template>
       <!-- Links -->
       <ul class="navbar-nav ml-auto mr-4">
 

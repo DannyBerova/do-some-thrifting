@@ -91,6 +91,7 @@ export class PostEditComponent {
     valueForm._id = this.id;
     this.postService.editSinglePostById(this.id, valueForm)
     .subscribe((data) => {
+      this.toastr.success('Success', 'Post edited successfully.')
       this.router.navigate([ `/post/details/${this.id}` ]);
     });
   }

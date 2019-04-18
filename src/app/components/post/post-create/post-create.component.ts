@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PostService } from 'src/app/core/services/post.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class PostCreateComponent {
 
   constructor(
     private fb: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router,
     private postService: PostService,
     private toastr: ToastrService,
@@ -68,7 +69,8 @@ export class PostCreateComponent {
     valueForm.images = [img];
     this.postService.createPost(valueForm)
     .subscribe((data) => {
-      this.router.navigate([ '/post/all' ]);
+      console.log(data['data']['_id'])
+      this.router.navigate([ `/post/details/${data['data']['_id']}` ]);
     });
   }
 }

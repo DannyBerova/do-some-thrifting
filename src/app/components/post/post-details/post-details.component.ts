@@ -38,19 +38,16 @@ export class PostDetailsComponent {
     private route: ActivatedRoute,
     private toastr: ToastrService,
   ) { 
-    this.post = this.route.snapshot.data['post']['post'];
+    this.post = this.route.snapshot.data['res']['post']['post'];
+    this.comments = this.route.snapshot.data['res']['comments']['comments'].reverse();
     this.starsCount = this.post['stars'].length;
     this.isLiked = this.post['stars'].indexOf(this.post._id) != -1;
-    const username = this.authService.getLoggedUserName();
-    this.username = username;
-    const isAdmin = this.authService.isAdmin();
-    this.isAdmin = isAdmin;
-    this.isCreator = username === this.post.createdBy['username'];
-    this.isCreatorOrAdmin = this.isCreator || isAdmin;
-    console.log(this.route.snapshot.data['post']['post']['stars'])
-    this.isLiked = this.route.snapshot.data['post']['post']['stars'].includes(this.authService.getLoggedUserId());
+    this.username = this.authService.getLoggedUserName();
+    this.isAdmin = this.authService.isAdmin();
+    this.isCreator = this.username === this.post.createdBy['username'];
+    this.isCreatorOrAdmin = this.isCreator || this.isAdmin;
+    this.isLiked = this.route.snapshot.data['res']['post']['post']['stars'].includes(this.authService.getLoggedUserId());
     this.thumb = this.isLiked ? 'fas' : 'far'
-    this.loadComments();
     this.testForm = new FormGroup({
       testSelect: new FormControl(this.post['status'])
    });
@@ -61,7 +58,6 @@ export class PostDetailsComponent {
     this.commentService.getAllCommentsByPostId(this.post._id).subscribe( res => {
       this.comments = res['comments'].reverse();
     })
-    // this.comments = this.commentService.getAllCommentsByPostId(this.post._id);
   }
 
   starUnstar() {

@@ -1,19 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardInfoComponent } from './card-info/card-info.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CardsFreeModule } from 'angular-bootstrap-md';
 
+import { CardInfoComponent } from './card-info/card-info.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
-    CardInfoComponent  
+    CardInfoComponent,
+    SearchComponent
 ],
   imports: [
     CommonModule,
-     RouterModule
+     RouterModule,
+     CardsFreeModule,
+     ReactiveFormsModule
+
   ],
   exports: [
-    CardInfoComponent
+    CardInfoComponent,
+    SearchComponent
   ]
 })
 export class SharedModule { }

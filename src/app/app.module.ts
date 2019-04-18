@@ -20,7 +20,7 @@ import { CoreModule } from './core/core.module';
     NavigationComponent,
     HomeComponent,
     NotFoundComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     AppRoutingModule,
