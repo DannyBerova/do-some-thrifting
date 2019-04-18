@@ -15,6 +15,8 @@ export class UserInfoPageComponent implements OnInit {
   user: IRegisterUser;
   ifNotPosts: boolean;
   isAdmin: boolean;
+  isAuthAndOwner: boolean;
+  isAdminProfile: boolean;
   blockUnblock: string;
   activeStatus: string;
   constructor(
@@ -29,6 +31,8 @@ export class UserInfoPageComponent implements OnInit {
     this.blockUnblock = this.user['isBlocked'] ? 'Unblock' : 'Block';
     this.activeStatus = this.user['isBlocked'] ? 'Blocked' : 'Active';
     this.isAdmin = this.authService.isAdmin();
+    this.isAdminProfile = this.isAdmin
+      && (this.authService.getLoggedUserId() === this.user._id);
   }
 
   ngOnInit() {

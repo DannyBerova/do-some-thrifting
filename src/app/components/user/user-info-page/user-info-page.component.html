@@ -21,10 +21,14 @@
           <p class="card-text">Full Name: {{user.firstName}} {{user.lastName}}</p>
           <p class="card-text">Phone number: {{user.phoneNumber}}</p>
           <p class="card-text">Posts count: {{user['posts'].length}}</p>
-          <ng-template [ngIf]="isAdmin">
+          <ng-template [ngIf]="isAdmin && !isAdminProfile">
             <hr>
-            <button type="button" (click)="blockUnblockUser()" class="btn btn-danger btn-sm m-0" routerLink="/user/profile/{{user._id}}">{{blockUnblock}}</button>
+            <button type="button" (click)="blockUnblockUser()" class="btn btn-danger btn-sm m-0" >{{blockUnblock}}</button>
           </ng-template>
+          <ng-template [ngIf]="!isAdmin && isAuthAndOwner">
+              <hr>
+              <a type="button" class="btn btn-danger btn-sm m-0" routerLink="/user/destroy/{{user._id}}">Destroy profile</a>
+            </ng-template>
           <hr>
           <p class="card-text">User status: {{activeStatus}}</p>
         </div>

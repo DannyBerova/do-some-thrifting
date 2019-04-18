@@ -2,10 +2,19 @@
     <!--Section: Cards-->
     <div class="row justify-content-center">
 
-      <div class="col text-center">
-              <h4>All posts on market:
-                  <span><app-search class="col-md-4" (onSearch)="searchPosts($event)" [term]="term"></app-search></span>
-              </h4>
+      <div class="col text-center" id="topOfPage">
+              <!-- <h4>All posts on market:</h4> -->
+              <div><app-search class="col-md-4" (onSearch)="searchPosts($event)" [term]="term"></app-search></div>
+              <div>
+                <ng-template [ngIf]="isPostsInCat && categoryP !== 'all'">
+                  <div>
+                      <p>Filter by category: {{categoryP}} </p>
+
+                  </div>
+                </ng-template>
+                
+                <app-filter-category (onFilter)="filter($event)" [cat]="categoryP"></app-filter-category>
+              </div>
               <hr>
       </div>
     </div>
@@ -16,9 +25,16 @@
     
             </div>
           </div>
+          <ng-template [ngIf]="!isPostsInCat && categoryP !== 'all'">
+              <div>
+                  <p>No posts in this category! Click "All"!</p>
+
+              </div>
+            </ng-template>
   
 
       <!--Pagination-->
+      <ng-template [ngIf]="pager.totalPages > 1">
       <div class="row">
       <nav  class="d-flex justify-content-center wow fadeIn">
         <ul *ngIf="pager.pages && pager.pages.length" class="pagination pg-dark">
@@ -60,6 +76,7 @@
         </ul>
       </nav>
     </div>
+  </ng-template>
     </section>
     <!--Section: Cards-->
 

@@ -7,11 +7,13 @@ import { SingleUserResolver } from 'src/app/core/resolvers/user-details.resolver
 import { CardsFreeModule } from 'angular-bootstrap-md';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { UserDestroyComponent } from './user-destroy/user-destroy.component';
 
 @NgModule({
   declarations: [
     UserInfoPageComponent, 
-    UserAllComponent,
+    UserAllComponent, 
+    UserDestroyComponent,
   ],
   imports: [
     CommonModule,

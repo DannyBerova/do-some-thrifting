@@ -31,11 +31,12 @@ export class SearchComponent {
 
   search() {
     let content = this.form.value.content
-    if (this.form.invalid || this.content.invalid) {
+    if ( (this.form.invalid || this.content.invalid)) {
       content = ''
+    } else {
+      this.term = content;
     }
-      this.term = '';
-      this.isTerm = this.term !== '';
+    this.isTerm = this.term !== '';
       this.searchEmitter.emit(content);
        this.form.reset();
   }

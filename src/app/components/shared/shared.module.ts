@@ -6,11 +6,13 @@ import { CardsFreeModule } from 'angular-bootstrap-md';
 
 import { CardInfoComponent } from './card-info/card-info.component';
 import { SearchComponent } from './search/search.component';
+import { FilterCategoryComponent } from './filter-category/filter-category.component';
 
 @NgModule({
   declarations: [
     CardInfoComponent,
-    SearchComponent
+    SearchComponent,
+    FilterCategoryComponent
 ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { SearchComponent } from './search/search.component';
   ],
   exports: [
     CardInfoComponent,
-    SearchComponent
+    SearchComponent,
+    FilterCategoryComponent
   ]
 })
 export class SharedModule { }
