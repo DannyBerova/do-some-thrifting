@@ -12,6 +12,7 @@
         
                 <!-- Username -->
                 <div class="mb-4">
+                    <label for="defaultRegisterFormEmail">Username</label>
                 <input 
                     type="text" 
                     id="defaultRegisterFormEmail" 
@@ -132,7 +133,7 @@
                     type="url" 
                     id="defaultRegisterPhoneEmail" 
                     class="form-control" 
-                    placeholder="Avatar URL" 
+                    placeholder="Avatar URL (optional)" 
                     aria-describedby="defaultRegisterFormPhoneHelpBlock" 
                     formControlName="avatar"
                     [ngClass]="avatar.touched ? (avatar.valid ? 'is-valid' : 'is-invalid') : null" />
@@ -145,7 +146,7 @@
                     
             <!-- Sign up button -->
             <button 
-                class="btn btn-success my-4 btn-block" 
+                class="btn default-color-dark text-white my-4 btn-block" 
                 type="submit" 
                 [disabled]="form.invalid">
                 Register

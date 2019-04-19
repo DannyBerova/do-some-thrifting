@@ -26,7 +26,7 @@
                       <option value="reserved">Reserved</option>
                       <option value="sold">Sold</option>
                     </select>
-                    <span><button type="submit" class="btn btn-md btn-light" (click)="changeStatus()" mdbWavesEffect>Change Status</button></span>
+                    <span><button type="submit" class="btn btn-md default-color-dark text-white" (click)="changeStatus()" mdbWavesEffect>Change Status</button></span>
                   </form>
                 </div>
               </ng-template>
@@ -63,12 +63,12 @@
           <hr>
           <!-- <p class="card-text">Status: "{{post['status'] | uppercase}}"</p> -->
           <ng-template [ngIf]="isCreator">
-            <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md btn-light" >Edit 
+            <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md default-color-dark text-white" >Edit 
               <i class="fas fa-edit ml-2"></i>
             </a>
           </ng-template>
             <ng-template [ngIf]="isCreatorOrAdmin">
-            <a [routerLink]="['/post', 'delete', post._id, post.title.trim()]" class="btn btn-md btn-light">Delete
+            <a [routerLink]="['/post', 'delete', post._id, post.title.trim()]" class="btn btn-md default-color-dark text-white">Delete
               <i class="fas fa-archive ml-2"></i>
             </a>
           </ng-template>

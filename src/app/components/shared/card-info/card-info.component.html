@@ -26,11 +26,11 @@
                 <i class="far fa-comments pr-1"></i>{{ post['comments'].length }}
               </a>
             </div>
-            <a [routerLink]="['/post', 'details', post._id]" class="btn btn-md btn-success" color="dark-green">View more...
+            <a [routerLink]="['/post', 'details', post._id]" class="btn btn-md default-color-dark text-white" color="dark-green">View more...
               <i class="fas fa-play ml-2"></i>
             </a>
             <ng-template [ngIf]="username === post.createdBy['username']">
-            <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md btn-success" color="dark-green">Edit Post
+            <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md default-color-dark text-white" color="dark-green">Edit Post
               <i class="fas fa-play ml-2"></i>
             </a>
           </ng-template>

@@ -1,11 +1,11 @@
 <form [formGroup]="form" (submit)="search()" >
   <input type="text" placeholder="Search posts..." id="form8" class="form-control inline" mdbInput formControlName="content" />
     <ng-template [ngIf]="term !=='' " >
-     <button class="btn btn-light btn-sm" (click)="search()" type="submit" >
+     <button class="btn btn-md default-color-dark text-white" (click)="search()" type="submit" >
        <i class="far fa-window-close"></i> Reset Search
     </button>
   </ng-template>
-    <button class="btn btn-light btn-sm" type="submit" [disabled]="form.invalid">
+    <button class="btn btn-md default-color-dark text-white" type="submit" [disabled]="form.invalid">
       <i class="fas fa-search"></i> Search posts by title
     </button>
 </form>

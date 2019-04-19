@@ -38,7 +38,10 @@ export class UserInfoPageComponent implements OnInit {
     this.blockUnblock = this.user['isBlocked'] ? 'Unblock' : 'Block';
     this.activeStatus = this.user['isBlocked'] ? 'Blocked' : 'Active';
     this.isAdmin = this.authService.isAdmin();
+
     this.isAdminProfile = this.isAdmin
+      && (this.authService.getLoggedUserId() === this.user._id);
+      this.isAuthAndOwner = !this.isAdmin
       && (this.authService.getLoggedUserId() === this.user._id);
   }
 
