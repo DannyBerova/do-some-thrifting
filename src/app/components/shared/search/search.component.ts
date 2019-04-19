@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class SearchComponent {
 
   @Input()term: string;
+  @Input()cat: string;
   @Output('onSearch') searchEmitter = new EventEmitter();
   isTerm: boolean;
   
@@ -23,6 +24,9 @@ export class SearchComponent {
         Validators.maxLength(30)
       ]),
     });
+    // if(this.term === '') {
+    //   this.search();
+    // }
   }
 
   get content() {

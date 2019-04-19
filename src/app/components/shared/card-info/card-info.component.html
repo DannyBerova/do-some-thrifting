@@ -15,6 +15,7 @@
           <h4 class="card-title">{{post.title}}</h4>
           <!--Text-->
           <p class="card-text">{{post.content | slice : 0 : 60}}...</p>
+          <p class="card-text">{{post.createdOn | date}}...</p>
           <p class="card-text">{{post.price | currency: 'EUR'}}</p>
           <div class="float-left col-md-12 pt-3 pl-2">
               <hr>

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { IPost } from '../../shared/models/IPost';
 
 @Component({
   selector: 'app-user-info-page',
@@ -13,6 +14,7 @@ import { UserService } from 'src/app/core/services/user.service';
 export class UserInfoPageComponent implements OnInit {
 
   user: IRegisterUser;
+  posts: IPost[];
   ifNotPosts: boolean;
   isAdmin: boolean;
   isAuthAndOwner: boolean;
@@ -27,6 +29,11 @@ export class UserInfoPageComponent implements OnInit {
     private toastr: ToastrService,
   ) { 
     this.user = this.route.snapshot.data['user']['user'];
+    this.posts = this.user['posts'].sort((a,b) => {
+      a = new Date(a.createdOn);
+      b = new Date(b.createdOn);
+      return a>b ? -1 : a<b ? 1 : 0;
+    });
     this.ifNotPosts = this.user['posts'].length === 0;
     this.blockUnblock = this.user['isBlocked'] ? 'Unblock' : 'Block';
     this.activeStatus = this.user['isBlocked'] ? 'Blocked' : 'Active';

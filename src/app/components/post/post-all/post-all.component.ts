@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { IPost } from '../../shared/models/IPost';
 import { PostService } from 'src/app/core/services/post.service';
 import { PagerService } from 'src/app/core/services/pager.service';
@@ -31,7 +30,11 @@ export class PostAllComponent {
   
   initPosts() {
     this.postService.getAllPosts().subscribe(data => {
-      this.posts = data['posts'].filter(p => p['status'] !== 'sold' && p.createdBy.isBlocked === false).reverse();
+      this.posts = data['posts'].filter(p => p['status'] !== 'sold' && p.createdBy.isBlocked === false).sort((a,b) => {
+        a = new Date(a.createdOn);
+        b = new Date(b.createdOn);
+        return a>b ? -1 : a<b ? 1 : 0;
+      });
       this.postsProcessed = this.posts;
       this.isPostsInCat = this.postsProcessed.length > 0
       this.setPage(1);
@@ -42,7 +45,8 @@ export class PostAllComponent {
     this.pager = this.pagerService.getPager(this.postsProcessed.length, page);
     this.pagedItems = this.postsProcessed.slice(this.pager.startIndex, this.pager.endIndex + 1);
     //window.location.hash = ''; 
-    window.location.hash = 'topOfPage';
+    
+     window.location.hash = 'topOfPage';
   }
 
   searchPosts(tes){
@@ -58,35 +62,49 @@ export class PostAllComponent {
         {
           relativeTo: this.route,
           queryParams: { search: this.term }, 
+          fragment: 'topOfPage'
         }); 
-
       } else {
       this.postsProcessed = this.posts;
       this.term = '';
       this.setPage(1);
-
       this.router.navigate(
         [], 
         {
           relativeTo: this.route,
           queryParams: {}, 
+          fragment: 'topOfPage'
+
         });
     }
   }
 
   filter(category: string) {
     this.categoryP = category;
-    console.log(category)
+    this.term = '';
     if (category !== 'all') {
       this.postsProcessed = this.posts.filter(p => p.category === this.categoryP)
       this.isPostsInCat = this.postsProcessed.length > 0
+      this.router.navigate(
+        [], 
+        {
+          relativeTo: this.route,
+          queryParams: { category: this.categoryP }, 
+          fragment: 'topOfPage'
+        }); 
+        this.setPage(1);
     } else {
-      console.log(category)
       this.postsProcessed = this.posts;
       this.isPostsInCat = this.postsProcessed.length > 0
+      this.router.navigate(
+        [], 
+        {
+          relativeTo: this.route,
+          fragment: 'topOfPage'
+        }); 
+      this.setPage(1);
     }
-    this.term = ''; //test it
-    this.setPage(1);
+    
     
   }
 
