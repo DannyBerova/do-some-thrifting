@@ -94,6 +94,7 @@ export class RegisterComponent {
   get lastNameErrorMessage() { return 'Last Name must be between 2 and 30 symbols - Only latin letters starting with capital letter' }
   get emailErrorMessage() { return 'Provide valid email structure.' }
   get phoneNumberErrorMessage() { return 'Phone number must be between 9 and 20 symbols, numbers only.' }
+  get avatarErrorMessage() { return 'Provide valid url structure - starts with https:// and ends with .jpg, .png or .gif' }
 
   onSubmitHandler() {
     const {confirmPassword, ...userModel} = this.form.value;

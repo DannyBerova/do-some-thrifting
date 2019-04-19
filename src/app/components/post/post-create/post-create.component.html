@@ -3,95 +3,92 @@
         <div class="col-1"></div>
         <div class="col-lg-10 col-sm-12 mt-lg-5 mb-lg-5 mt-md-3 mb-md-3">
             <!-- Default form register -->
-            <form 
-            class="text-center border border-light p-5" 
-            [formGroup]="form" 
-            (submit)="onSubmitHandler()">
-        
-            <p class="h4 mb-4">Add Post</p>
-            <!-- <pre>{{form.value | json}}</pre> -->
-        
+            <form class="text-center border border-light p-5" [formGroup]="form" (submit)="onSubmitHandler()">
+                <p class="h4 mb-4">Add Post</p>
                 <!-- Title -->
                 <div class="mb-4">
-                <input 
-                    type="text" 
-                    id="defaultRegisterFormEmail" 
-                    class="form-control" 
-                    placeholder="Title" 
-                    formControlName="title"
-                    [ngClass]="title.touched ? (title.valid ? 'is-valid' : 'is-invalid') : null" />
-                <small 
-                    class="invalid-feedback" 
-                    *ngIf="title.touched && title.invalid">
-                    {{titleErrorMessage}}
-                </small>
+                    <label for="createTitle" class="text-default">Title</label>
+                    <input 
+                        type="text" 
+                        id="createTitle" 
+                        class="form-control" 
+                        placeholder="Title" 
+                        formControlName="title"
+                        [ngClass]="title.touched ? (title.valid ? 'is-valid' : 'is-invalid') : null" />
+                    <small 
+                        class="invalid-feedback" 
+                        *ngIf="title.touched && title.invalid">
+                        {{titleErrorMessage}}
+                    </small>
                 </div>
 
-            <!-- Content -->
-            <div class="mb-4">
-                <input 
-                    type="text" 
-                    id="defaultRegisterFormEmail" 
-                    class="form-control" 
-                    placeholder="Content" 
-                    formControlName="content"
-                    [ngClass]="content.touched ? (content.valid ? 'is-valid' : 'is-invalid') : null" />
-                <small 
-                    class="invalid-feedback" 
-                    *ngIf="content.touched && content.invalid">
-                    {{contentErrorMessage}}
-                </small>
+                <!-- Content -->
+                <div class="mb-4">
+                    <label for="createContent" class="text-default">Content</label>
+                    <input 
+                        type="text" 
+                        id="createContent" 
+                        class="form-control" 
+                        placeholder="Content" 
+                        formControlName="content"
+                        [ngClass]="content.touched ? (content.valid ? 'is-valid' : 'is-invalid') : null" />
+                    <small 
+                        class="invalid-feedback" 
+                        *ngIf="content.touched && content.invalid">
+                        {{contentErrorMessage}}
+                    </small>
                 </div>
-            
-            <!-- Price -->
-            <div class="mb-4">
-                <input 
-                    type="number" 
-                    id="defaultRegisterPhonePassword" 
-                    class="form-control" 
-                    placeholder="Price" 
-                    aria-describedby="defaultRegisterFormPhoneHelpBlock" 
-                    formControlName="price"
-                    [ngClass]="price.touched ? (price.valid ? 'is-valid' : 'is-invalid') : null" />
-                <small 
-                    class="invalid-feedback" 
-                    *ngIf="price.touched && price.invalid">
-                    {{ priceErrorMessage }}
-                </small>
-            </div>
-            <div class="mb-4">
-                <input 
-                    type="url" 
-                    id="defaultRegisterPhoneEmail" 
-                    class="form-control" 
-                    placeholder="Image Url (optional)" 
-                    aria-describedby="defaultRegisterFormPhoneHelpBlock" 
-                    formControlName="images"
-                    [ngClass]="images.touched ? (images.valid ? 'is-valid' : 'is-invalid') : null" />
-                <small 
-                    class="invalid-feedback" 
-                    *ngIf="images.touched && images.invalid">
-                    {{ urlErrorMessage }}
-                </small>
-            </div>
-            <div class="mb-4">
-                <select class="browser-default custom-select" formControlName="category">
-                    <option *ngFor="let category of categories" [ngValue]="category">{{category}}
-                  </select>
-            </div>
-                    
-            <!-- Sign up button -->
-            <button 
-                class="btn default-color-dark text-white my-4 btn-block" 
-                type="submit" 
-                [disabled]="form.invalid"
-                >
-                Add post
-            </button>
-            <hr>
+                
+                <!-- Price -->
+                <div class="mb-4">
+                    <label for="createPrice" class="text-default">Price</label>
+                    <input 
+                        type="number" 
+                        id="createPrice" 
+                        class="form-control" 
+                        placeholder="Price" 
+                        aria-describedby="defaultRegisterFormPhoneHelpBlock" 
+                        formControlName="price"
+                        [ngClass]="price.touched ? (price.valid ? 'is-valid' : 'is-invalid') : null" />
+                    <small 
+                        class="invalid-feedback" 
+                        *ngIf="price.touched && price.invalid">
+                        {{ priceErrorMessage }}
+                    </small>
+                </div>
+                <div class="mb-4">
+                    <label for="createImage" class="text-default">Image URL (optional)</label>
+                    <input 
+                        type="url" 
+                        id="createImage" 
+                        class="form-control" 
+                        placeholder="Image Url (optional)" 
+                        aria-describedby="defaultRegisterFormPhoneHelpBlock" 
+                        formControlName="images"
+                        [ngClass]="images.touched ? (images.valid ? 'is-valid' : 'is-invalid') : null" />
+                    <small 
+                        class="invalid-feedback" 
+                        *ngIf="images.touched && images.invalid">
+                        {{ urlErrorMessage }}
+                    </small>
+                </div>
+                <div class="mb-4">
+                    <label for="createCategory" class="text-default">Category (select from options)</label>
+                    <select class="browser-default custom-select" id="createCategory" formControlName="category">
+                        <option *ngFor="let category of categories" [ngValue]="category">{{category}}
+                    </select>
+                </div>
+                <!-- Sign up button -->
+                <button 
+                    class="btn default-color-dark text-white my-4 btn-block" 
+                    type="submit" 
+                    [disabled]="form.invalid"
+                    >
+                    Add post
+                </button>
+                <hr>
             </form>
         </div>
-        <div class="col-1"></div>
-        </div>
-    
+    <div class="col-1"></div>
     </div>
+ </div>

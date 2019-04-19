@@ -29,7 +29,7 @@ import { CoreModule } from './core/core.module';
     HttpClientModule,
     CoreModule,
     MDBBootstrapModule.forRoot(),
-    ToastrModule.forRoot({positionClass: 'toast-top-left',})
+    ToastrModule.forRoot({positionClass: 'toast-bottom-left',})
   ],
   providers: [
   ],

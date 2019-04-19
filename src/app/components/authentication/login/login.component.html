@@ -12,34 +12,36 @@
   
               <!-- Email -->
               <div class="mb-4">
-                  <input 
-                      type="text" 
-                      id="defaultLoginFormEmail" 
-                      class="form-control" 
-                      placeholder="Username" 
-                      formControlName="username"
-                      [ngClass]="username.touched ? (username.valid ? 'is-valid' : 'is-invalid') : null" />
-                  <small 
-                      class="invalid-feedback" 
-                      *ngIf="username.touched && username.invalid">
-                      {{ usernameErrorMessage }}
-                  </small>
+                <label for="defaultLoginFormUsername" class="text-default" >Username</label>
+                <input 
+                    type="text" 
+                    id="defaultLoginFormUsername" 
+                    class="form-control" 
+                    placeholder="Username" 
+                    formControlName="username"
+                    [ngClass]="username.touched ? (username.valid ? 'is-valid' : 'is-invalid') : null" />
+                <small 
+                    class="invalid-feedback" 
+                    *ngIf="username.touched && username.invalid">
+                    {{ usernameErrorMessage }}
+                </small>
               </div>
               
               <!-- Password -->
               <div class="mb-4">
-                  <input 
-                      type="password" 
-                      id="defaultLoginFormPassword" 
-                      class="form-control" 
-                      placeholder="Password" 
-                      formControlName="password"
-                      [ngClass]="password.touched ? (password.valid ? 'is-valid' : 'is-invalid') : null" />
-                  <small 
-                      class="invalid-feedback" 
-                      *ngIf="password.touched && password.invalid">
-                      {{ passwordErrorMessage }}
-                  </small>
+                <label for="defaultLoginFormPassword" class="text-default" >Password</label>
+                <input 
+                    type="password" 
+                    id="defaultLoginFormPassword" 
+                    class="form-control" 
+                    placeholder="Password" 
+                    formControlName="password"
+                    [ngClass]="password.touched ? (password.valid ? 'is-valid' : 'is-invalid') : null" />
+                <small 
+                    class="invalid-feedback" 
+                    *ngIf="password.touched && password.invalid">
+                    {{ passwordErrorMessage }}
+                </small>
               </div>
           
               <!-- Sign in button -->
@@ -52,10 +54,9 @@
           
               <!-- Register -->
               <p>Not a member?
-                  <a routerLink="/auth/register">Register</a>
+                <a routerLink="/auth/register">Register</a>
               </p>
           
-              
           </form>
           <!-- Default form login -->
       </div>

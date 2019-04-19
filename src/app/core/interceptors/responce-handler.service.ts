@@ -36,7 +36,7 @@ export class ResponceHandlerInterceptorService implements HttpInterceptor {
       }), catchError((err) => {
         this.authService.logout();
         this.router.navigate(['/auth/login'])
-        console.log('res interceptor', err);
+        console.log('result interceptor', err);
         this.toastr.error('Error', err.error['message']);
         throw err;
       }));
