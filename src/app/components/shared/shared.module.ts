@@ -12,7 +12,7 @@ import { FilterCategoryComponent } from './filter-category/filter-category.compo
   declarations: [
     CardInfoComponent,
     SearchComponent,
-    FilterCategoryComponent
+    FilterCategoryComponent,
 ],
   imports: [
     CommonModule,

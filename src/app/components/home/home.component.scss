@@ -10,9 +10,10 @@
 }
 
 .intro {
-    padding: 1%;
+    padding: 1.5%;
     border-radius: 5px;
     background-color: #00897b;
+    opacity: 0.5;
 ;}
 
 .sample{
@@ -25,8 +26,9 @@
 }
 
 .transp{
-    background-color: khaki;
+    background-color: #00897b;
     opacity: 0.4;
+    padding-top: 5px;
 }
 .card-title, hr{
     opacity: 1 !important;

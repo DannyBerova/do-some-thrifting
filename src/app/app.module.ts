@@ -13,11 +13,13 @@ import { NavigationComponent } from './components/shared/navigation/navigation.c
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { AboutComponent } from './components/shared/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    AboutComponent,
     NavigationComponent,
     NotFoundComponent,
     FooterComponent,
@@ -29,7 +31,9 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     HttpClientModule,
     CoreModule,
     MDBBootstrapModule.forRoot(),
-    ToastrModule.forRoot({positionClass: 'toast-bottom-left',})
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-left',
+    })
   ],
   providers: [
   ],

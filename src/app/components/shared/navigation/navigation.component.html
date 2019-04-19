@@ -7,8 +7,11 @@
     <!-- Links -->
     <ul class="navbar-nav mr-auto ml-4">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/post/all">Posts<span class="sr-only">(current)</span></a>
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/about">About<span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/post/all">Posts<span class="sr-only">(current)</span></a>
+        </li>
       <ng-template [ngIf]="isLoggedIn">
         <li class="nav-item" routerLinkActive="active" >
           <a class="nav-link waves-light" mdbWavesEffect routerLink="/post/create">Add Post</a>
