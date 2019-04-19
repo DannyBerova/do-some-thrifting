@@ -1,22 +1,28 @@
-<div class="row notfound" >
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <!-- Card -->
- 
-<div class="card card-image mb-3" >
-
-    <!-- Content -->
-    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-      <div>
+<div class="container notfound" >
+      <div style="height:45vh">
+          <div class="flex-center flex-column">
         
-        <h3 class="card-title pt-2"><strong>This page cannot be found!</strong></h3>
-        <a mdbBtn color="teal" class="waves-light" mdbWavesEffect routerLink="/"><i class="far fa-clone left"></i> Go Home, Mama!</a>
-      </div>
-    </div>
-    <!-- Content -->
-  </div>
-  <!-- Card -->
+            <mdb-card>
+                <mdb-card-body class="text-center teal">
+                  <mdb-card-title>
+                  </mdb-card-title>
+                  <mdb-card-text>
+                    <h5 class="text-white">This page cannot be found!</h5>
+                  </mdb-card-text>
+                  <div class="flex-row">
+                      <a [routerLink]="['/home']" class="btn btn-md default-color-dark text-white">Go home, Mama! 
+                        <i class="fas fa-edit ml-2"></i>
+                      </a>
+                     
+                  </div>
+                </mdb-card-body>
+              </mdb-card>
+            <div>
+              
+            </div>
+          </div>
+        </div>
+
     </div>
  
-</div>
 

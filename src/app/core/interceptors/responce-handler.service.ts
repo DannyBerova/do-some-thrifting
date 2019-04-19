@@ -3,13 +3,18 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } fr
 import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResponceHandlerInterceptorService implements HttpInterceptor {
 
-  constructor(public toastr: ToastrService) { }
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    public toastr: ToastrService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       // const jsonReq = req.clone({
@@ -29,6 +34,8 @@ export class ResponceHandlerInterceptorService implements HttpInterceptor {
          }
        }
       }), catchError((err) => {
+        this.authService.logout();
+        this.router.navigate(['/auth/login'])
         console.log('res interceptor', err);
         this.toastr.error('Error', err.error['message']);
         throw err;
