@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IRegisterUser } from '../../shared/models/IRegisterUser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { IPost } from '../../shared/models/IPost';
+import { IRegisterUser } from '../../shared/models/IRegisterUser';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { IPost } from '../../shared/models/IPost';
 
 @Component({
   selector: 'app-user-info-page',
@@ -24,10 +24,11 @@ export class UserInfoPageComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private userservice: UserService,
-    private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-  ) { 
+  ) { }
+
+  ngOnInit() {
     this.user = this.route.snapshot.data['user']['user'];
     this.posts = this.user['posts'].sort((a,b) => {
       a = new Date(a.createdOn);
@@ -37,15 +38,12 @@ export class UserInfoPageComponent implements OnInit {
     this.ifNotPosts = this.user['posts'].length === 0;
     this.blockUnblock = this.user['isBlocked'] ? 'Unblock' : 'Block';
     this.activeStatus = this.user['isBlocked'] ? 'Blocked' : 'Active';
-    this.isAdmin = this.authService.isAdmin();
 
+    this.isAdmin = this.authService.isAdmin();
     this.isAdminProfile = this.isAdmin
       && (this.authService.getLoggedUserId() === this.user._id);
-      this.isAuthAndOwner = !this.isAdmin
+    this.isAuthAndOwner = !this.isAdmin
       && (this.authService.getLoggedUserId() === this.user._id);
-  }
-
-  ngOnInit() {
   }
 
   blockUnblockUser() {
@@ -54,8 +52,5 @@ export class UserInfoPageComponent implements OnInit {
       this.blockUnblock = res['user']['isBlocked'] ? 'Unblock' : 'Block';
       this.toastr.success('Success', res['message'])
     })
-    console.log(this.user._id)
-
   }
-
 }

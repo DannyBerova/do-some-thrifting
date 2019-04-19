@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { PostService } from 'src/app/core/services/post.service';
 
 @Component({
@@ -11,8 +10,6 @@ import { PostService } from 'src/app/core/services/post.service';
 })
 export class PostCreateComponent {
 
-  private titlePatern = /^[\w\s]{3,50}$/;
-  private contentPatern = /^[\w\s]{10,420}$/;
   private defaultPicture = "https://www.union.edu/files/union-marketing-layer/201803/picture.jpg";
 
   form: FormGroup = new FormGroup({});
@@ -20,10 +17,8 @@ export class PostCreateComponent {
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private postService: PostService,
-    private toastr: ToastrService,
   ) {
     this.form = this.fb.group({
       title: this.fb.control('', [
@@ -42,7 +37,6 @@ export class PostCreateComponent {
         Validators.max(2000),
       ]),
       images: this.fb.control('', [
-        // Validators.required, 
         Validators.pattern('^https:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^/#?]+)+\.(?:jpg|gif|png)$')
       ]),
       category: this.fb.control('other', [
@@ -69,7 +63,6 @@ export class PostCreateComponent {
     valueForm.images = [img];
     this.postService.createPost(valueForm)
     .subscribe((data) => {
-      console.log(data['data']['_id'])
       this.router.navigate([ `/post/details/${data['data']['_id']}` ]);
     });
   }

@@ -10,10 +10,8 @@ import { IPost } from '../../shared/models/IPost';
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.scss']
 })
-export class PostEditComponent {
+export class PostEditComponent implements OnInit{
 
-  private titlePatern = /^[\w\s]{3,50}$/;
-  private contentPatern = /^[\w\s]{10,420}$/;
   private defaultPicture = "https://www.union.edu/files/union-marketing-layer/201803/picture.jpg";
 
   id: string;
@@ -54,7 +52,9 @@ export class PostEditComponent {
       createdOn: this.fb.control(''),
       createdBy: this.fb.control(''),
     });
+  }
 
+  ngOnInit() {
     this.route.params.subscribe( data => {
       this.id = data['id'];
       this.postService.getSinglePostById(this.id).subscribe(res => {

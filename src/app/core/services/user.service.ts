@@ -14,7 +14,6 @@ const blockUnblock = 'user/block/';
 })
 export class UserService {
   constructor(private http: HttpClient) { }
-
   
   getAllUsers(): Observable<Array<IRegisterUser>> {
     return this.http.get<Array<IRegisterUser>>(BASE_URL + getAllUsers);

@@ -1,33 +1,25 @@
 <div class="container" >
-    <div style="height:60vh">
-        <div class="flex-center flex-column">
-          <h1 class="text-red animated fadeIn mb-4 font-weight-bolder">Danger zone:</h1>
-      
-          <mdb-card>
-              <mdb-card-body class="text-center">
-                <mdb-card-title>
-                  <h4>Delete user "{{name}}"!</h4>
-                </mdb-card-title>
-                <mdb-card-text>
-                  <h5>Are you sure you want to destroy your profile? It is permanent!</h5>
-                </mdb-card-text>
-                <div class="flex-row">
-                    <a [routerLink]="['/user', 'profile', id]" class="btn btn-md default-color-dark text-white">Cancel 
-                      <i class="fas fa-edit ml-2"></i>
-                    </a>
-                    <a (click)="destroy()" class="btn btn-md danger-color-dark text-white">Delete
-                      <i class="fas fa-archive ml-2"></i>
-                    </a>
-                   
-                </div>
-              </mdb-card-body>
-            </mdb-card>
-          <div>
-            
+  <div style="height:60vh">
+    <div class="flex-center flex-column">
+      <h1 class="text-red animated fadeIn mb-4 font-weight-bolder">Danger zone:</h1>
+      <mdb-card>
+        <mdb-card-body class="text-center">
+          <mdb-card-title>
+            <h4>Delete user "{{name}}"!</h4>
+          </mdb-card-title>
+          <mdb-card-text>
+            <h5>Are you sure you want to destroy your profile? It is permanent!</h5>
+          </mdb-card-text>
+          <div class="flex-row">
+            <a [routerLink]="['/user', 'profile', id]" class="btn btn-md default-color-dark text-white">Cancel 
+              <i class="fas fa-edit ml-2"></i>
+            </a>
+            <a (click)="destroy()" class="btn btn-md danger-color-dark text-white">Delete
+              <i class="fas fa-archive ml-2"></i>
+            </a>
           </div>
-        </div>
-      </div>
+        </mdb-card-body>
+      </mdb-card>
     </div>
-    <div class="row center" >
-    
+  </div>
 </div>

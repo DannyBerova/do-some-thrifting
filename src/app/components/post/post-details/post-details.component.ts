@@ -1,22 +1,20 @@
 import { Component, OnInit, DoCheck, OnChanges } from '@angular/core';
-import { IPost } from '../../shared/models/IPost';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { CommentService } from 'src/app/core/services/comment.service';
-import { IComment } from '../../shared/models/IComment';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
+
+import { IPost } from '../../shared/models/IPost';
+import { IComment } from '../../shared/models/IComment';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { PostService } from 'src/app/core/services/post.service';
-import { toArray } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { CommentService } from 'src/app/core/services/comment.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html',
   styleUrls: ['./post-details.component.scss']
 })
-export class PostDetailsComponent {
-
+export class PostDetailsComponent implements OnInit{
   post: IPost
   id: string;
   isAdmin: boolean;
@@ -31,28 +29,28 @@ export class PostDetailsComponent {
   starsCount: number;
 
   constructor(
-    private commentService: CommentService,
+    private route: ActivatedRoute,
     private authService: AuthService,
     private postService: PostService,
-    private router: Router,
-    private route: ActivatedRoute,
+    private commentService: CommentService,
     private toastr: ToastrService,
-  ) { 
+  ) {}
+
+  ngOnInit() {
     this.post = this.route.snapshot.data['res']['post']['post'];
     this.comments = this.route.snapshot.data['res']['comments']['comments'].reverse();
-    this.starsCount = this.post['stars'].length;
-    this.isLiked = this.post['stars'].indexOf(this.post._id) != -1;
+
     this.username = this.authService.getLoggedUserName();
     this.isAdmin = this.authService.isAdmin();
     this.isCreator = this.username === this.post.createdBy['username'];
     this.isCreatorOrAdmin = this.isCreator || this.isAdmin;
+    this.starsCount = this.post['stars'].length;
     this.isLiked = this.route.snapshot.data['res']['post']['post']['stars'].includes(this.authService.getLoggedUserId());
     this.thumb = this.isLiked ? 'fas' : 'far'
     this.testForm = new FormGroup({
       testSelect: new FormControl(this.post['status'])
    });
   }
-
 
   loadComments() {
     this.commentService.getAllCommentsByPostId(this.post._id).subscribe( res => {
@@ -76,7 +74,6 @@ export class PostDetailsComponent {
       createdBy: this.post.createdBy['username']
     }
     this.postService.changeStatus(this.post._id, data).subscribe(res => {
-      console.log(this.post['status'])
       this.post['status'] = this.testForm.value.testSelect;
       this.toastr.success(res['message'])
       this.loadComments()

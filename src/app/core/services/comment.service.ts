@@ -25,7 +25,6 @@ export class CommentService {
   }
 
   deleteComment(id: string, creator: string) {
-    console.log('creator:', creator)
     return this.http.delete( (BASE_URL + deleteC + id + '/' + creator));
   }
 

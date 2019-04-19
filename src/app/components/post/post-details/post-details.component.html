@@ -1,104 +1,110 @@
 <div class="container details">
   <div class="row ">
-      <br>
-      <br>
+      <br><br>
     <div class="col-md-7 mb-3 toppart">
-            <figure class="figure zoom topimage">
-                <img src="{{post.images[0]}}" class="figure-img img-fluid z-depth-1"
-                  alt="..." style="width: 80%">
-              </figure>
-              <div>
-                
-                <div class="float-left col-md-12 pt-3 pl-2">
-                    <hr>
-                    <a class="green-text" (click)="starUnstar()">
-                      <i class=" {{thumb}} fa-thumbs-up pr-1" ></i>{{ starsCount}}
-                    </a>
-                    <a class="light-blue-text ml-3">
-                      <i class="far fa-comments pr-1"></i>{{ comments.length }}
-                    </a>
-                  </div>
-                  <ng-template [ngIf]="isCreator">
-                  <div class="float-left col-md-9 pt-3 pl-2">
-                    <form [formGroup]="testForm">
-                    <select class="browser-default custom-select col-md-6" formControlName="testSelect" id="st">
-                      <option value="onstock">On Stock</option>
-                      <option value="reserved">Reserved</option>
-                      <option value="sold">Sold</option>
-                    </select>
-                    <span><button type="submit" class="btn btn-md default-color-dark text-white" (click)="changeStatus()" mdbWavesEffect>Change Status</button></span>
-                  </form>
-                </div>
-              </ng-template>
-              <div class="float-left col-md-12 pt-3 pl-2">
-                  <hr>
-
-                  <h6 >Status: {{post['status'] | uppercase}}</h6>
-                </div>
-      </div>
-    </div>
-        <!--Card content-->
-        <div class="col-md-5 mb-3">
-        <div class="card-body">
-          <!--Title-->
-          <h4 class="card-title">Title: 
-            <span class="font-weight-bolder">{{post.title}}</span>
-          </h4>
-          <!--Text-->
-          <p class="card-text">Content: 
-              <span class="font-weight-bolder">"{{post.content}}"</span>
-          </p>
-          <hr>
-          <p class="card-text">Price: {{post.price | currency: 'EUR'}}</p>
-          <hr>
-          <p class="card-text">Post by: {{post['createdBy']['username']}} created on {{post.createdOn | date}}</p>
-          <hr>
-          <p class="card-text">Category: "{{post.category}}"</p>
-          <hr>
-          <p>User info and contact details: 
-              <a [routerLink]="['/user', 'profile', post['createdBy']['_id']]" class="btn btn-md btn-light" >Go to info page 
-                <i class="fas fa-edit ml-2"></i>
-              </a>
-          </p>
-          <hr>
-          <!-- <p class="card-text">Status: "{{post['status'] | uppercase}}"</p> -->
+      <figure class="figure zoom topimage">
+        <img src="{{post.images[0]}}" class="figure-img img-fluid z-depth-1"
+          alt="..." style="width: 80%">
+      </figure>
+      <div>
+        <div class="float-left col-md-12 pt-3 pl-2">
+            <hr>
+            <a class="text-default" (click)="starUnstar()">
+              <i class=" {{thumb}} fa-thumbs-up pr-1" ></i>{{ starsCount }}
+            </a>
+            <a class="text-muted ml-3">
+              <i class="far fa-comments pr-1"></i>{{ comments.length }}
+            </a>
+          </div>
           <ng-template [ngIf]="isCreator">
-            <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md default-color-dark text-white" >Edit 
-              <i class="fas fa-edit ml-2"></i>
-            </a>
-          </ng-template>
-            <ng-template [ngIf]="isCreatorOrAdmin">
-            <a [routerLink]="['/post', 'delete', post._id, post.title.trim()]" class="btn btn-md default-color-dark text-white">Delete
-              <i class="fas fa-archive ml-2"></i>
-            </a>
-          </ng-template>
+            <div class="float-left col-md-9 pt-3 pl-2">
+              <form [formGroup]="testForm">
+                <select class="browser-default custom-select col-md-6" formControlName="testSelect" id="st">
+                  <option value="onstock">On Stock</option>
+                  <option value="reserved">Reserved</option>
+                  <option value="sold">Sold</option>
+                </select>
+                <span><button type="submit" class="btn btn-md default-color-dark text-white" (click)="changeStatus()" mdbWavesEffect>Change Status</button></span>
+              </form>
+            </div>
+        </ng-template>
+        <div class="float-left col-md-12 pt-3 pl-2">
+          <hr>
+          <h6 >Status: {{post['status'] | uppercase}}</h6>
         </div>
       </div>
     </div>
-        <app-comment-create (onCreateComment)="loadComments()" [postId]="post._id" [postCreatorId]="post['createdBy']['_id']" >
-      </app-comment-create>
+      <!--Card content-->
+    <div class="col-md-5 mb-3">
+      <div class="card-body">
+        <!--Title-->
+        <h4 class="card-title">Title: 
+          <span class="font-weight-bolder">{{post.title}}</span>
+        </h4>
+        <!--Text-->
+        <p class="card-text">Content: 
+            <span class="font-weight-bolder">"{{post.content}}"</span>
+        </p>
         <hr>
-        <ol >
-          <li *ngFor="let comm of comments">  
-              <mdb-card class="col-md-10">
-                  <mdb-card-body >
-                    <mdb-card-title>
-                      <h5>"{{comm.content}}"</h5>
-                    </mdb-card-title>
-                    <mdb-card-text>
-                      <span> Comment by: {{comm.creatorUsername}}  created on: {{comm.createdOn | date}} </span>
-                    <span class="flex-row">
-                        <ng-template [ngIf]="isAdmin || comm.creatorUsername === username">
-                        <button (click)="deleteComment(comm['_id'])" class="btn btn-small btn-light" color="dark-green">Delete
+        <p class="card-text">Price: {{post.price | currency: 'EUR'}}</p>
+        <hr>
+        <p class="card-text">Post by: {{post['createdBy']['username']}} created on {{post.createdOn | date}}</p>
+        <hr>
+        <p class="card-text">Category: "{{post.category}}"</p>
+        <hr>
+        <p>User info and contact details: 
+            <a [routerLink]="['/user', 'profile', post['createdBy']['_id']]" class="btn btn-md btn-light" >Go to info page 
+              <i class="fas fa-edit ml-2"></i>
+            </a>
+        </p>
+        <hr>
+        <!-- <p class="card-text">Status: "{{post['status'] | uppercase}}"</p> -->
+        <ng-template [ngIf]="isCreator">
+          <a [routerLink]="['/post', 'edit', post._id]" class="btn btn-md default-color-dark text-white" >Edit 
+            <i class="fas fa-edit ml-2"></i>
+          </a>
+        </ng-template>
+        <ng-template [ngIf]="isCreatorOrAdmin">
+          <a [routerLink]="['/post', 'delete', post._id, post.title.trim()]" class="btn btn-md default-color-dark text-white">Delete
+            <i class="fas fa-archive ml-2"></i>
+          </a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+    <app-comment-create 
+      (onCreateComment)="loadComments()" 
+      [postId]="post._id" 
+      [postCreatorId]="post['createdBy']['_id']" >
+    </app-comment-create>
+    <hr>
+    <div>
+    <ol >
+      <li *ngFor="let comm of comments">  
+          <mdb-card class="col-md-10">
+            <mdb-card-body >
+              <mdb-card-title>
+                <br>
+                <h5>"{{comm.content}}"</h5>
+              </mdb-card-title>
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <br>
+                  <p class="text-default"> Comment by: {{comm.creatorUsername}}, created on: {{comm.createdOn | date: "dd-MMM-yyyy HH:mm"}} </p>
+                </div>
+                  <div class="col-md-4 align-content-end">
+                      <ng-template [ngIf]="isAdmin || comm.creatorUsername === username">
+                        <button (click)="deleteComment(comm['_id'])" class="btn btn-small btn-light float-right" color="dark-green">Delete
                           <i class="fas fa-archive ml-2"></i>
                         </button>
                       </ng-template>
-                      </span>
-                      </mdb-card-text>
-                  </mdb-card-body>
-                </mdb-card>
-          </li>
-        </ol>
+                  </div>
+                </div>
+            </mdb-card-body>
+          </mdb-card>
+      </li>
+    </ol>
+  </div>
 </div>
 
 

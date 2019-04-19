@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -68,13 +67,11 @@ export class RegisterComponent {
       Validators.required, 
       Validators.minLength(6),
       Validators.maxLength(20),
-      // passwordValidator(confirmPassword)
     ]);
     confirmPassword.setValidators([
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(20),
-      // passwordValidator(password)
     ]);
   }
 

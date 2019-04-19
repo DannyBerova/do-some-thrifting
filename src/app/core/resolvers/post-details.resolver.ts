@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { mergeMap } from 'rxjs/operators';
+
 import { PostService } from '../services/post.service';
 import { CommentService } from '../services/comment.service';
-import { mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class SinglePostResolver implements Resolve<any> {

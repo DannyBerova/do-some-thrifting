@@ -16,20 +16,17 @@ export class UserDestroyComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private authService: AuthService,
+  ) {}
 
-  ) { 
+  ngOnInit() {
     this.route.paramMap.subscribe( params => {
       this.id = params.get('id');
       this.name = this.authService.getLoggedUserName();
     })
   }
 
-  ngOnInit() {
-  }
-
   destroy() {
-    const creator = localStorage.getItem('userId');
-    this.userService.destroyUser(this.id).subscribe(data => {
+    this.userService.destroyUser(this.id).subscribe(_ => {
       this.authService.logout();
       this.router.navigate(['/home']);
     })

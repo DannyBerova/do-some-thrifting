@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,6 @@ export class ResponceHandlerInterceptorService implements HttpInterceptor {
     public toastr: ToastrService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      // const jsonReq = req.clone({
-      //   setHeaders: {
-      //     Authorization: `Bearer ${this.authService.getJwtToken()}`
-      //   }
-      // });
      return next.handle(req).pipe(tap((success) => {
        if (success instanceof HttpResponse) {
          if (success.url.endsWith('login')

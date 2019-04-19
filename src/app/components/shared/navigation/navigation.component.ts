@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements DoCheck {
+export class NavigationComponent implements OnInit, DoCheck {
 
   isLoggedIn: boolean;
   isAdmin: boolean;
@@ -17,10 +17,12 @@ export class NavigationComponent implements DoCheck {
     private authService: AuthService,
     private router: Router,
     public toastr: ToastrService
-  ) { 
+  ) { }
+
+  ngOnInit() {
     this.initNav()
   }
-
+  
   ngDoCheck() {
     this.initNav()
   }

@@ -1,35 +1,28 @@
 <div id="home" style="text-align:center">
   <ng-template [ngIf]="isLoggedIn">
     <div class="card transp">
-
       <h3 class="text-black card-title">
         Hello, {{username}}!
       </h3>
     </div>
-  </ng-template>
-  
-    <div style="height:60vh">
-      <div class="flex-center flex-column">
+    </ng-template>
+      <div style="height:60vh">
+        <div class="flex-center flex-column">
+          <h1 class="mb-4 text-white intro">Welcome to the</h1>
+          <h1 class="mb-4 text-white intro">thrifting zone!</h1>
+          <button type="button" class="btn btn-md default-color-dark text-white" routerLink="/post/all" mdbWavesEffect > <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+            Go To Market</button>
+        <div>
 
-            <h1 class="mb-4 text-white intro">Welcome to the</h1>
-            <h1 class="mb-4 text-white intro">thrifting zone!</h1>
-    
-        <!-- <ng-template [ngIf]="isLoggedIn"> -->
-            <button type="button" class="btn btn-md default-color-dark text-white" routerLink="/post/all" mdbWavesEffect > <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-              Go To Market</button>
-              <!-- </ng-template> -->
-              <div>
-
-                <ng-template [ngIf]="!isLoggedIn">
-                    <br>
-                    <br>
-                <h5 class="text-white mb-3 intro">Log in to view details pages.</h5>
-          <div>
-            <button type="button" class="btn btn-md default-color-dark text-white" color="blue-grey" routerLink="/auth/login" mdbWavesEffect ><i class="fas fa-unlock-alt"></i> Log in</button>
-            <button type="button" class="btn btn-md default-color-dark text-white" routerLink="/auth/register" mdbWavesEffect><i class="fas fa-user"></i> Sign Up</button>
-          </div>
-              </ng-template>
-              </div>
+          <ng-template [ngIf]="!isLoggedIn">
+            <br><br>
+            <h5 class="text-white mb-3 intro">Log in to view details pages.</h5>
+            <div>
+              <button type="button" class="btn btn-md default-color-dark text-white" color="blue-grey" routerLink="/auth/login" mdbWavesEffect ><i class="fas fa-unlock-alt"></i> Log in</button>
+              <button type="button" class="btn btn-md default-color-dark text-white" routerLink="/auth/register" mdbWavesEffect><i class="fas fa-user"></i> Sign Up</button>
+            </div>
+        </ng-template>
       </div>
     </div>
   </div>
+</div>

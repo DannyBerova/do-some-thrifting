@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { IPost } from '../../shared/models/IPost';
+import { ActivatedRoute, Router} from '@angular/router';
+
 import { PostService } from 'src/app/core/services/post.service';
 import { PagerService } from 'src/app/core/services/pager.service';
-import { ActivatedRoute, Router, Params, NavigationExtras } from '@angular/router';
 
 @Component ({
   selector: 'app-post-all',
   templateUrl: './post-all.component.html',
   styleUrls: ['./post-all.component.scss']
 })
-export class PostAllComponent {
+export class PostAllComponent implements OnInit {
 
   posts: Array<IPost>;
   postsProcessed: Array<IPost>;
-  pager: any = {};
   pagedItems: Array<IPost>;
+  pager: any = {};
   term: string = '';
   categoryP: string = 'all';
   isPostsInCat: boolean;
@@ -24,11 +25,9 @@ export class PostAllComponent {
     private pagerService: PagerService,
     private router: Router,
     private route: ActivatedRoute
-  ) { 
-    this.initPosts();
-  }
-  
-  initPosts() {
+  ) {}
+
+  ngOnInit() {
     this.postService.getAllPosts().subscribe(data => {
       this.posts = data['posts'].filter(p => p['status'] !== 'sold' && p.createdBy.isBlocked === false).sort((a,b) => {
         a = new Date(a.createdOn);
@@ -40,12 +39,10 @@ export class PostAllComponent {
       this.setPage(1);
     });
   }
-
+  
   setPage(page: number) {
     this.pager = this.pagerService.getPager(this.postsProcessed.length, page);
     this.pagedItems = this.postsProcessed.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    //window.location.hash = ''; 
-    
      window.location.hash = 'topOfPage';
   }
 
@@ -53,7 +50,8 @@ export class PostAllComponent {
     this.categoryP = "all";
     if(tes !== '') {
       this.term = tes;
-      this.postsProcessed = this.posts.filter(p => p.title.toLowerCase().includes(tes.toLowerCase()));
+      this.postsProcessed = this.posts
+        .filter(p => p.title.toLowerCase().includes(tes.toLowerCase()));
       this.isPostsInCat = this.postsProcessed.length > 0
 
       this.setPage(1);
@@ -83,7 +81,8 @@ export class PostAllComponent {
     this.categoryP = category;
     this.term = '';
     if (category !== 'all') {
-      this.postsProcessed = this.posts.filter(p => p.category === this.categoryP)
+      this.postsProcessed = this.posts
+        .filter(p => p.category === this.categoryP)
       this.isPostsInCat = this.postsProcessed.length > 0
       this.router.navigate(
         [], 
@@ -104,8 +103,6 @@ export class PostAllComponent {
         }); 
       this.setPage(1);
     }
-    
-    
   }
-
 }
+

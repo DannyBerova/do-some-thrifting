@@ -24,9 +24,6 @@ export class SearchComponent {
         Validators.maxLength(30)
       ]),
     });
-    // if(this.term === '') {
-    //   this.search();
-    // }
   }
 
   get content() {
@@ -44,5 +41,4 @@ export class SearchComponent {
       this.searchEmitter.emit(content);
        this.form.reset();
   }
-
 }
