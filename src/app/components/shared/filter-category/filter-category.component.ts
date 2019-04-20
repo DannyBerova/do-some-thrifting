@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { dbConsts } from '../../../core/consts'
 
+const ALL_CATEGORY = 'all'
 @Component({
   selector: 'app-filter-category',
   templateUrl: './filter-category.component.html',
@@ -11,10 +13,10 @@ export class FilterCategoryComponent {
   @Input()search: string;
   @Output('onFilter') filterEmitter = new EventEmitter();
   isTerm: boolean;
-  categoryNames: String[] = ['clothes', 'toys', 'shoes', 'home', 'outdoor', 'accessories', 'books', 'other'];
+  categoryNames: String[] = dbConsts.categoryArray; //out in const
 
   filter(category: string) {
-    if (this.categoryNames.includes(category) || category === 'all') {
+    if (this.categoryNames.includes(category) || category === ALL_CATEGORY) {
       this.filterEmitter.emit(category);
     }
   }

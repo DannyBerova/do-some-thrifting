@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {api, storageState} from '../consts'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly loginUrl = 'https://do-some-thrifting-db.herokuapp.com/auth/login';
-  private readonly registerUrl = 'https://do-some-thrifting-db.herokuapp.com/auth/register';
-
   constructor(
     private http: HttpClient
   ) {  }
 
   register(body) {
-    return this.http.post(this.registerUrl, body);
+    console.log(api.base + api.auth.register)
+    return this.http.post(api.base + api.auth.register, body);
   }
 
   login(body) {
-    return this.http.post(this.loginUrl, body);
+    return this.http.post(api.base + api.auth.login, body);
   }
 
   logout() {
@@ -25,26 +24,26 @@ export class AuthService {
   }
 
   isAuthenticated() {
-    return localStorage.getItem('token') !== null;
+    return localStorage.getItem(storageState.token) !== null;
   }
 
   getLoggedUserName() {
-    return localStorage.getItem('user');
+    return localStorage.getItem(storageState.user);
   }
 
   getLoggedUserId() {
-    return localStorage.getItem('userId');
+    return localStorage.getItem(storageState.userId);
   }
 
   isAdmin() {
-    return localStorage.getItem('isAdmin') === 'true';
+    return localStorage.getItem(storageState.isAdmin) === 'true';
   }
 
   isBlocked() {
-    return localStorage.getItem('isBlocked') === 'true';
+    return localStorage.getItem(storageState.isBlocked) === 'true';
   }
 
   getJwtToken() {
-    return localStorage.getItem('token') ? localStorage.getItem('token') : '';
+    return localStorage.getItem(storageState.token) ? localStorage.getItem(storageState.token) : '';
   }
 }

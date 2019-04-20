@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { paths } from '../../../core/consts'
 
 @Component({
   selector: 'app-user-destroy',
@@ -28,8 +29,7 @@ export class UserDestroyComponent implements OnInit {
   destroy() {
     this.userService.destroyUser(this.id).subscribe(_ => {
       this.authService.logout();
-      this.router.navigate(['/home']);
+      this.router.navigate([paths.home]);
     })
-    console.log("delete")
   }
 }

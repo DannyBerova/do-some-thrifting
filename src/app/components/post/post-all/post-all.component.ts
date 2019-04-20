@@ -4,7 +4,10 @@ import { ActivatedRoute, Router} from '@angular/router';
 
 import { PostService } from 'src/app/core/services/post.service';
 import { PagerService } from 'src/app/core/services/pager.service';
+import { paths } from '../../../core/consts'
 
+const ALL_CATEGORY = 'all'
+const SOLD_STATUS = 'sold'
 @Component ({
   selector: 'app-post-all',
   templateUrl: './post-all.component.html',
@@ -17,7 +20,7 @@ export class PostAllComponent implements OnInit {
   pagedItems: Array<IPost>;
   pager: any = {};
   term: string = '';
-  categoryP: string = 'all';
+  categoryP: string = ALL_CATEGORY;
   isPostsInCat: boolean;
 
   constructor(
@@ -29,7 +32,7 @@ export class PostAllComponent implements OnInit {
 
   ngOnInit() {
     this.postService.getAllPosts().subscribe(data => {
-      this.posts = data['posts'].filter(p => p['status'] !== 'sold' && p.createdBy.isBlocked === false).sort((a,b) => {
+      this.posts = data['posts'].filter(p => p['status'] !== SOLD_STATUS && p.createdBy.isBlocked === false).sort((a,b) => {
         a = new Date(a.createdOn);
         b = new Date(b.createdOn);
         return a>b ? -1 : a<b ? 1 : 0;
@@ -43,11 +46,11 @@ export class PostAllComponent implements OnInit {
   setPage(page: number) {
     this.pager = this.pagerService.getPager(this.postsProcessed.length, page);
     this.pagedItems = this.postsProcessed.slice(this.pager.startIndex, this.pager.endIndex + 1);
-     window.location.hash = 'topOfPage';
+     window.location.hash = paths.fragmentTop;
   }
 
   searchPosts(tes){
-    this.categoryP = "all";
+    this.categoryP = ALL_CATEGORY;
     if(tes !== '') {
       this.term = tes;
       this.postsProcessed = this.posts
@@ -60,7 +63,7 @@ export class PostAllComponent implements OnInit {
         {
           relativeTo: this.route,
           queryParams: { search: this.term }, 
-          fragment: 'topOfPage'
+          fragment: paths.fragmentTop
         }); 
       } else {
       this.postsProcessed = this.posts;
@@ -71,7 +74,7 @@ export class PostAllComponent implements OnInit {
         {
           relativeTo: this.route,
           queryParams: {}, 
-          fragment: 'topOfPage'
+          fragment: paths.fragmentTop
 
         });
     }
@@ -80,7 +83,7 @@ export class PostAllComponent implements OnInit {
   filter(category: string) {
     this.categoryP = category;
     this.term = '';
-    if (category !== 'all') {
+    if (category !== ALL_CATEGORY) {
       this.postsProcessed = this.posts
         .filter(p => p.category === this.categoryP)
       this.isPostsInCat = this.postsProcessed.length > 0
@@ -89,7 +92,7 @@ export class PostAllComponent implements OnInit {
         {
           relativeTo: this.route,
           queryParams: { category: this.categoryP }, 
-          fragment: 'topOfPage'
+          fragment: paths.fragmentTop
         }); 
         this.setPage(1);
     } else {
@@ -99,7 +102,7 @@ export class PostAllComponent implements OnInit {
         [], 
         {
           relativeTo: this.route,
-          fragment: 'topOfPage'
+          fragment: paths.fragmentTop
         }); 
       this.setPage(1);
     }

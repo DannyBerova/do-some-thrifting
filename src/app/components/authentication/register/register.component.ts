@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
+import {messages, paths, regexPatterns} from '../../../core/consts'
 
 
 @Component({
@@ -11,12 +12,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-
-  private phoneNumberPattern = '^[0-9]{9,20}$';
-  private usernamePattern = /^[A-Za-z0-9._]+$/;
-  private namePattern = /^[A-Z][a-z]+$/;
-  private emailPattern = '^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$';
-  private urlPattern = '^https:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^/#?]+)+\.(?:jpg|gif|png)$'
 
   form: FormGroup = new FormGroup({});
 
@@ -31,7 +26,7 @@ export class RegisterComponent {
         Validators.required, 
         Validators.minLength(5),
         Validators.maxLength(30),
-        Validators.pattern(this.usernamePattern),
+        Validators.pattern(regexPatterns.username),
       ]),
       password: this.fb.control(''),
       confirmPassword: this.fb.control(''),
@@ -39,24 +34,24 @@ export class RegisterComponent {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
-        Validators.pattern(this.namePattern),
+        Validators.pattern(regexPatterns.name),
       ]),
       lastName: this.fb.control('', [
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
-        Validators.pattern(this.namePattern),
+        Validators.pattern(regexPatterns.name),
       ]),
       email: this.fb.control('', [
         Validators.required,
-        Validators.pattern(this.emailPattern),
+        Validators.pattern(regexPatterns.phoneNumber),
       ]),
       phoneNumber: this.fb.control('', [
         Validators.required,
-        Validators.pattern(this.phoneNumberPattern),
+        Validators.pattern(regexPatterns.phoneNumber),
       ]),
       avatar: this.fb.control('', [
-        Validators.pattern(this.urlPattern)
+        Validators.pattern(regexPatterns.imageUrl)
       ]),
     });
 
@@ -84,14 +79,14 @@ export class RegisterComponent {
   get phoneNumber() { return this.form.get('phoneNumber'); }
   get avatar() { return this.form.get('avatar'); }
 
-  get usernameErrorMessage() { return 'Username must be between 5 and 30 symbols - latin letters, numbers and underscores.' }
-  get passwordErrorMessage() { return 'Password must be between 6 and 30 symbols' }
-  get confirmPasswordErrorMessage() { return 'Passwords must match.' }
-  get firstNameErrorMessage() { return 'First Name must be between 2 and 30 symbols - Only latin letters starting with capital letter' }
-  get lastNameErrorMessage() { return 'Last Name must be between 2 and 30 symbols - Only latin letters starting with capital letter' }
-  get emailErrorMessage() { return 'Provide valid email structure.' }
-  get phoneNumberErrorMessage() { return 'Phone number must be between 9 and 20 symbols, numbers only.' }
-  get avatarErrorMessage() { return 'Provide valid url structure - starts with https:// and ends with .jpg, .png or .gif' }
+  get usernameErrorMessage() { return messages.errors.userUsername }
+  get passwordErrorMessage() { return messages.errors.userPassword }
+  get confirmPasswordErrorMessage() { return messages.errors.userConfirmPass }
+  get firstNameErrorMessage() { return messages.errors.userFirstName }
+  get lastNameErrorMessage() { return messages.errors.userLastName }
+  get emailErrorMessage() { return messages.errors.userEmail }
+  get phoneNumberErrorMessage() { return messages.errors.userPhoneNumber }
+  get avatarErrorMessage() { return messages.errors.userAvatar }
 
   onSubmitHandler() {
     const {confirmPassword, ...userModel} = this.form.value;
@@ -102,7 +97,7 @@ export class RegisterComponent {
       localStorage.setItem('userId', data['userId']);
       localStorage.setItem('isAdmin', data['isAdmin']);
       localStorage.setItem('isBlocked', data['isBlocked']);
-      this.router.navigate([ '/home' ]);
+      this.router.navigate([paths.home]);
     });
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { messages, paths } from '../../../core/consts'
 
 @Component({
   selector: 'app-navigation',
@@ -16,7 +17,7 @@ export class NavigationComponent implements OnInit, DoCheck {
   constructor(
     private authService: AuthService,
     private router: Router,
-    public toastr: ToastrService
+    public toastr: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -35,8 +36,8 @@ export class NavigationComponent implements OnInit, DoCheck {
 
   logout() {
     this.authService.logout();
-    this.toastr.success('Success', 'Logged out!');
-    this.router.navigate(['/home']);
+    this.toastr.success(messages.success, messages.logout);
+    this.router.navigate([paths.home]);
   }
 
 }

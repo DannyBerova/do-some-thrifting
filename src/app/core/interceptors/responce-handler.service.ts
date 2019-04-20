@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth.service';
+import { messages, paths } from '../consts'
 
 @Injectable({
   providedIn: 'root'
@@ -24,15 +25,17 @@ export class ResponceHandlerInterceptorService implements HttpInterceptor {
          || success.url.endsWith('create')
          || success.url.endsWith('destroy')
          || success.body.message === 'Post deleted successfully!'
+         || success.body.message === 'Post edited successfully.'
          || success.body.message === 'Comment deleted successfully!') {
-           this.toastr.success('Success', success.body.message);
+           this.toastr.success(messages.success, success.body.message);
          }
        }
       }), catchError((err) => {
         this.authService.logout();
-        this.router.navigate(['/auth/login'])
+        this.router.navigate([paths.login])
+        this.toastr.error(messages.error, err.error['message']);
+        
         console.log('result interceptor', err);
-        this.toastr.error('Error', err.error['message']);
         throw err;
       }));
   }

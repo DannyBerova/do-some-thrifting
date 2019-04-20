@@ -8,7 +8,10 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { PostService } from 'src/app/core/services/post.service';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { ToastrService } from 'ngx-toastr';
+import { messages } from '../../../core/consts'
 
+const FAS_ICON = 'fas';
+const FAR_ICON = 'far';
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html',
@@ -46,7 +49,7 @@ export class PostDetailsComponent implements OnInit{
     this.isCreatorOrAdmin = this.isCreator || this.isAdmin;
     this.starsCount = this.post['stars'].length;
     this.isLiked = this.route.snapshot.data['res']['post']['post']['stars'].includes(this.authService.getLoggedUserId());
-    this.thumb = this.isLiked ? 'fas' : 'far'
+    this.thumb = this.isLiked ? FAS_ICON : FAR_ICON
     this.testForm = new FormGroup({
       testSelect: new FormControl(this.post['status'])
    });
@@ -60,11 +63,11 @@ export class PostDetailsComponent implements OnInit{
 
   starUnstar() {
     this.postService.starUnstarPost(this.post._id).subscribe(res => {
-      this.toastr.success('Success', res['message']);
+      this.toastr.success(messages.success, res['message']);
       this.starsCount = res['starsCount'];
      
       this.isLiked = res['stars'].includes(this.authService.getLoggedUserId());
-      this.thumb = this.isLiked ? 'fas' : 'far'
+      this.thumb = this.isLiked ? FAS_ICON : FAR_ICON
     })
   }
 

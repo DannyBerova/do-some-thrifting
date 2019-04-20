@@ -5,7 +5,13 @@ import { IPost } from '../../shared/models/IPost';
 import { IRegisterUser } from '../../shared/models/IRegisterUser';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { messages } from '../../../core/consts'
 
+
+const IS_BLOCKED = 'Blocked';
+const IS_ACTIVE = 'Active';
+const BLOCK = 'Block';
+const UNBLOCK = 'Unblock';
 @Component({
   selector: 'app-user-info-page',
   templateUrl: './user-info-page.component.html',
@@ -32,12 +38,12 @@ export class UserInfoPageComponent implements OnInit {
     this.user = this.route.snapshot.data['user']['user'];
     this.posts = this.user['posts'].sort((a,b) => {
       a = new Date(a.createdOn);
-      b = new Date(b.createdOn);
-      return a>b ? -1 : a<b ? 1 : 0;
+      b = new Date(b.createdOn); //move to resolver
+      return a>b ? -1 : a<b ? 1 : 0; 
     });
+
     this.ifNotPosts = this.user['posts'].length === 0;
-    this.blockUnblock = this.user['isBlocked'] ? 'Unblock' : 'Block';
-    this.activeStatus = this.user['isBlocked'] ? 'Blocked' : 'Active';
+    this.setStatusButton();
 
     this.isAdmin = this.authService.isAdmin();
     this.isAdminProfile = this.isAdmin
@@ -48,9 +54,13 @@ export class UserInfoPageComponent implements OnInit {
 
   blockUnblockUser() {
     this.userservice.blockUnblockUser(this.user._id).subscribe( res => {
-      this.activeStatus = res['user']['isBlocked'] ? 'Blocked' : 'Active';
-      this.blockUnblock = res['user']['isBlocked'] ? 'Unblock' : 'Block';
-      this.toastr.success('Success', res['message'])
+      this.setStatusButton();
+      this.toastr.success(messages.success, res['message'])
     })
+  }
+
+  setStatusButton() {
+    this.activeStatus = this.user['isBlocked'] ? IS_BLOCKED : IS_ACTIVE;
+    this.blockUnblock = this.user['isBlocked'] ? UNBLOCK : BLOCK;
   }
 }

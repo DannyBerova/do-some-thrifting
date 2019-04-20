@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { messages, paths } from '../consts'
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,8 @@ export class BlockedGuard implements CanActivate {
     if (!this.authService.isBlocked()) {
       return true;
     }
-    this.toastr.error('Blocked', 'Go home, you are blocked!')
-    this.router.navigate(['/home']);
+    this.toastr.error(messages.blocked, messages.blockedMessage)
+    this.router.navigate([paths.home]);
 
     return false;
   }

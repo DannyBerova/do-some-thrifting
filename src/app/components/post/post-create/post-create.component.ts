@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/core/services/post.service';
+import {dbConsts, messages, paths, regexPatterns} from '../../../core/consts'
 
 @Component({
   selector: 'app-post-create',
@@ -10,10 +11,10 @@ import { PostService } from 'src/app/core/services/post.service';
 })
 export class PostCreateComponent {
 
-  private defaultPicture = "https://www.union.edu/files/union-marketing-layer/201803/picture.jpg";
+  private defaultPicture = dbConsts.defaultPicture;
 
   form: FormGroup = new FormGroup({});
-  categories:Array<string> = ['other', 'toys', 'shoes', 'home', 'outdoor', 'accessories', 'books', 'clothes'];
+  categories:Array<string> = dbConsts.categoryArray;
 
   constructor(
     private fb: FormBuilder,
@@ -37,7 +38,7 @@ export class PostCreateComponent {
         Validators.max(2000),
       ]),
       images: this.fb.control('', [
-        Validators.pattern('^https:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^/#?]+)+\.(?:jpg|gif|png)$')
+        Validators.pattern(regexPatterns.imageUrl)
       ]),
       category: this.fb.control('other', [
         Validators.required,
@@ -51,11 +52,11 @@ export class PostCreateComponent {
   get images() { return this.form.get('images'); }
   get category() { return this.form.get('category'); }
 
-  get titleErrorMessage() { return 'Title must be between 3 and 50 symbols.' }
-  get contentErrorMessage() { return 'Content must be between 10 and 420 symbols.' }
-  get priceErrorMessage() { return 'Price must be positive number between 0 and 2000' }
-  get urlErrorMessage() { return 'Provide valid url structure - starts with https:// and ends with .jpg, .png or .gif' }
-  get categoryErrorMessage() { return 'Choose valid category.' }
+  get titleErrorMessage() { return messages.errors.postTitle }
+  get contentErrorMessage() { return messages.errors.postContent }
+  get priceErrorMessage() { return messages.errors.postPricee }
+  get urlErrorMessage() { return messages.errors.postUrl }
+  get categoryErrorMessage() { return messages.errors.postCategory }
 
   onSubmitHandler() {
     const valueForm = this.form.value;
@@ -63,7 +64,7 @@ export class PostCreateComponent {
     valueForm.images = [img];
     this.postService.createPost(valueForm)
     .subscribe((data) => {
-      this.router.navigate([ `/post/details/${data['data']['_id']}` ]);
+      this.router.navigate([ paths.dettailsPost + data['data']['_id']]);
     });
   }
 }

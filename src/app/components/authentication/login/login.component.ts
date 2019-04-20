@@ -3,6 +3,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { messages, paths, storageState} from '../../../core/consts'
+
 
 @Component({
   selector: 'app-login',
@@ -32,22 +34,22 @@ export class LoginComponent implements OnInit {
   get password() { return this.form.get('password'); }
 
   get usernameErrorMessage(): string {
-    return 'Invalid credentials';
+    return messages.errors.userLogin;
   }
 
   get passwordErrorMessage(): string {
-    return 'Invalid credentials';
+    return messages.errors.userLogin;
   }
 
   onSubmitHandler() {
     this.authService.login(this.form.value)
     .subscribe((data) => {
-      localStorage.setItem('token', data['token']);
-      localStorage.setItem('user', data['username']);
-      localStorage.setItem('userId', data['userId']);
-      localStorage.setItem('isAdmin', data['isAdmin']);
-      localStorage.setItem('isBlocked', data['isBlocked']);
-      this.router.navigate([ '/home' ]);
+      localStorage.setItem( storageState.token, data['token']);
+      localStorage.setItem( storageState.user, data['username']);
+      localStorage.setItem( storageState.userId, data['userId']);
+      localStorage.setItem( storageState.isAdmin, data['isAdmin']);
+      localStorage.setItem( storageState.isBlocked, data['isBlocked']);
+      this.router.navigate([paths.home]);
     });
   }
 }

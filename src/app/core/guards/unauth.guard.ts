@@ -7,6 +7,8 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { paths } from '../consts';
+
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +28,7 @@ export class UnauthGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/home']);
+    this.router.navigate([paths.home]);
 
     return false;
   }

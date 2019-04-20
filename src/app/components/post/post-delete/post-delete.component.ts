@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PostService } from 'src/app/core/services/post.service';
+import { paths } from '../../../core/consts'
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-post-delete',
@@ -15,7 +17,8 @@ export class PostDeleteComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private postService: PostService
+    private authService: AuthService,
+    private postService: PostService,
   ) { }
 
   ngOnInit() {
@@ -26,10 +29,10 @@ export class PostDeleteComponent implements OnInit {
   }
 
   deletePost() {
-    const creator = localStorage.getItem('userId');
+    const creator = this.authService.getLoggedUserId();
     this.postService.deletePost(this.id, creator)
       .subscribe(data => {
-        this.router.navigate(['/post/all']);
+        this.router.navigate([paths.allPost]);
     })
   }
 
