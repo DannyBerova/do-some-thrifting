@@ -46,19 +46,27 @@ export class PostAllComponent implements OnInit {
   setPage(page: number) {
     this.pager = this.pagerService.getPager(this.postsProcessed.length, page);
     this.pagedItems = this.postsProcessed.slice(this.pager.startIndex, this.pager.endIndex + 1);
-     window.location.hash = paths.fragmentTop;
+    this.setRouterQueryParams(page);
+  }
 
-     this.router.navigate(
+  setRouterQueryParams(page: number) {
+    let queryParams = {};
+    if(this.term !== '') {
+      queryParams['search'] = this.term;
+    } else if(this.categoryP !== ALL_CATEGORY) {
+      queryParams['category'] = this.categoryP;
+    }
+    queryParams['page'] = page;
+
+    this.router.navigate(
       [], 
       {
-        relativeTo: this.route,
-        queryParams: {
-          search: this.term ,
-          category: this.categoryP,
-          page: page
-          }, 
-        fragment: paths.fragmentTop
+        queryParams: queryParams, 
+        fragment: paths.fragmentTop,
+        preserveFragment: true,
       }); 
+      const url = document.URL
+      window.location.assign(url)
   }
 
   searchPosts(tes){
@@ -68,28 +76,11 @@ export class PostAllComponent implements OnInit {
       this.postsProcessed = this.posts
         .filter(p => p.title.toLowerCase().includes(tes.toLowerCase()));
       this.isPostsInCat = this.postsProcessed.length > 0
-
-      this.setPage(1);
-      // this.router.navigate(
-      //   [], 
-      //   {
-      //     relativeTo: this.route,
-      //     queryParams: { search: this.term }, 
-      //     fragment: paths.fragmentTop
-      //   }); 
-      } else {
+    } else {
       this.postsProcessed = this.posts;
       this.term = '';
-      this.setPage(1);
-      // this.router.navigate(
-      //   [], 
-      //   {
-      //     relativeTo: this.route,
-      //     queryParams: {}, 
-      //     fragment: paths.fragmentTop
-
-      //   });
     }
+    this.setPage(1);
   }
 
   filter(category: string) {
@@ -99,25 +90,11 @@ export class PostAllComponent implements OnInit {
       this.postsProcessed = this.posts
         .filter(p => p.category === this.categoryP)
       this.isPostsInCat = this.postsProcessed.length > 0
-      // this.router.navigate(
-      //   [], 
-      //   {
-      //     relativeTo: this.route,
-      //     queryParams: { category: this.categoryP }, 
-      //     fragment: paths.fragmentTop
-      //   }); 
-      //   this.setPage(1);
     } else {
       this.postsProcessed = this.posts;
       this.isPostsInCat = this.postsProcessed.length > 0
-      // this.router.navigate(
-      //   [], 
-      //   {
-      //     relativeTo: this.route,
-      //     fragment: paths.fragmentTop
-      //   }); 
-      // this.setPage(1);
     }
+    this.setPage(1);
   }
 }
 
