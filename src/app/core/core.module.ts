@@ -9,10 +9,12 @@ import { PagerService } from './services/pager.service';
 import { SinglePostResolver } from './resolvers/post-details.resolver';
 import { SingleUserResolver } from './resolvers/user-details.resolver';
 import { UserAllResolver } from './resolvers/user-all.resolver';
+import { PostAllResolver } from './resolvers/post-all.resolver';
 
 @NgModule({
   providers: [
     SinglePostResolver,
+    PostAllResolver,
     SingleUserResolver,
     UserAllResolver,
     AuthService,

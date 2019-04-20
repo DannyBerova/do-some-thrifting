@@ -31,16 +31,10 @@ export class PostAllComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.postService.getAllPosts().subscribe(data => {
-      this.posts = data['posts'].filter(p => p['status'] !== SOLD_STATUS && p.createdBy.isBlocked === false).sort((a,b) => {
-        a = new Date(a.createdOn);
-        b = new Date(b.createdOn);
-        return a>b ? -1 : a<b ? 1 : 0;
-      });
-      this.postsProcessed = this.posts;
-      this.isPostsInCat = this.postsProcessed.length > 0
-      this.setPage(1);
-    });
+    this.posts = this.route.snapshot.data['posts'];
+    this.postsProcessed = this.posts;
+    this.isPostsInCat = this.postsProcessed.length > 0
+    this.setPage(1);
   }
   
   setPage(page: number) {
@@ -69,12 +63,12 @@ export class PostAllComponent implements OnInit {
       window.location.hash = paths.fragmentTop;
   }
 
-  searchPosts(tes){
+  searchPosts(searchTerm: string){
     this.categoryP = ALL_CATEGORY;
-    if(tes !== '') {
-      this.term = tes;
+    if(searchTerm !== '') {
+      this.term = searchTerm;
       this.postsProcessed = this.posts
-        .filter(p => p.title.toLowerCase().includes(tes.toLowerCase()));
+        .filter(p => p.title.toLowerCase().includes(searchTerm.toLowerCase()));
       this.isPostsInCat = this.postsProcessed.length > 0
     } else {
       this.postsProcessed = this.posts;

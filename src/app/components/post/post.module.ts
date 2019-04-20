@@ -12,6 +12,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostDeleteComponent } from './post-delete/post-delete.component';
 import { SinglePostResolver } from 'src/app/core/resolvers/post-details.resolver';
+import { PostAllResolver } from 'src/app/core/resolvers/post-all.resolver';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SinglePostResolver } from 'src/app/core/resolvers/post-details.resolver
     CommentModule
   ],
   providers: [
-    SinglePostResolver
+    SinglePostResolver,
+    PostAllResolver
   ]
 })
 export class PostModule { }

@@ -8,10 +8,11 @@ import { PostDeleteComponent } from './post-delete/post-delete.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { BlockedGuard } from 'src/app/core/guards/blocked.guard';
 import { SinglePostResolver } from 'src/app/core/resolvers/post-details.resolver';
+import { PostAllResolver } from 'src/app/core/resolvers/post-all.resolver';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'all' },
-  { path: 'all', component: PostAllComponent },
+  { path: 'all', component: PostAllComponent,  resolve: { posts: PostAllResolver } },
   { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard, BlockedGuard] },
   { path: 'edit/:id', component: PostEditComponent, canActivate: [AuthGuard] },
   { path: 'delete/:id/:name', component: PostDeleteComponent, canActivate: [AuthGuard] },
