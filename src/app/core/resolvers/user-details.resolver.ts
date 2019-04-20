@@ -13,8 +13,10 @@ export class SingleUserResolver implements Resolve<any> {
     const id = route.params['id'];
     if (route.url[0].path === 'profile') {
       return this.userService.getSingleUserById(id);
-    } else {
+    } else if ((route.url[0].path === 'mine')){
       return this.userService.getSingleUserById(localStorage.getItem('userId'));
+    } else {
+      return;
     }
   }
 }

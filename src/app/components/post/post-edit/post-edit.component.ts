@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -6,13 +6,14 @@ import { ToastrService } from 'ngx-toastr';
 import { PostService } from 'src/app/core/services/post.service';
 import { IPost } from '../../shared/models/IPost';
 import{ dbConsts, messages, paths ,regexPatterns } from '../../../core/consts'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.scss']
 })
-export class PostEditComponent implements OnInit{
+export class PostEditComponent implements OnInit, OnDestroy{
 
   private defaultPicture = dbConsts.defaultPicture;
 
@@ -20,6 +21,7 @@ export class PostEditComponent implements OnInit{
   post: IPost
   form: FormGroup = new FormGroup({});
   categories:Array<string> = dbConsts.categoryArray;
+  getPostSub: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -58,7 +60,7 @@ export class PostEditComponent implements OnInit{
   ngOnInit() {
     this.route.params.subscribe( data => {
       this.id = data.id;
-      this.postService.getSinglePostById(this.id).subscribe(res => {
+      this.getPostSub = this.postService.getSinglePostById(this.id).subscribe(res => {
         const result = res['post'];
         this.form.setValue({
           title: result.title,
@@ -94,6 +96,9 @@ export class PostEditComponent implements OnInit{
       .subscribe((data) => {
         this.router.navigate([ paths.dettailsPost + this.id ]);
     });
+  }
+  ngOnDestroy() {
+    this.getPostSub.unsubscribe();
   }
 }
 

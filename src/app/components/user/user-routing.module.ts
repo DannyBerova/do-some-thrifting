@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'all' },
   { path: 'all', component: UserAllComponent, canActivate: [AdminGuard], resolve: { users: UserAllResolver }},
   { path: 'profile/:id', component: UserInfoPageComponent, canActivate: [AuthGuard], resolve: { user: SingleUserResolver }},
+  { path: 'mine/:id', component: UserInfoPageComponent, canActivate: [AuthGuard], resolve: { user: SingleUserResolver }},
   { path: 'destroy/:id', component: UserDestroyComponent, canActivate: [AuthGuard] },
 ];
 
