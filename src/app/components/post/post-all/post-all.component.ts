@@ -47,6 +47,18 @@ export class PostAllComponent implements OnInit {
     this.pager = this.pagerService.getPager(this.postsProcessed.length, page);
     this.pagedItems = this.postsProcessed.slice(this.pager.startIndex, this.pager.endIndex + 1);
      window.location.hash = paths.fragmentTop;
+
+     this.router.navigate(
+      [], 
+      {
+        relativeTo: this.route,
+        queryParams: {
+          search: this.term ,
+          category: this.categoryP,
+          page: page
+          }, 
+        fragment: paths.fragmentTop
+      }); 
   }
 
   searchPosts(tes){
@@ -58,25 +70,25 @@ export class PostAllComponent implements OnInit {
       this.isPostsInCat = this.postsProcessed.length > 0
 
       this.setPage(1);
-      this.router.navigate(
-        [], 
-        {
-          relativeTo: this.route,
-          queryParams: { search: this.term }, 
-          fragment: paths.fragmentTop
-        }); 
+      // this.router.navigate(
+      //   [], 
+      //   {
+      //     relativeTo: this.route,
+      //     queryParams: { search: this.term }, 
+      //     fragment: paths.fragmentTop
+      //   }); 
       } else {
       this.postsProcessed = this.posts;
       this.term = '';
       this.setPage(1);
-      this.router.navigate(
-        [], 
-        {
-          relativeTo: this.route,
-          queryParams: {}, 
-          fragment: paths.fragmentTop
+      // this.router.navigate(
+      //   [], 
+      //   {
+      //     relativeTo: this.route,
+      //     queryParams: {}, 
+      //     fragment: paths.fragmentTop
 
-        });
+      //   });
     }
   }
 
@@ -87,24 +99,24 @@ export class PostAllComponent implements OnInit {
       this.postsProcessed = this.posts
         .filter(p => p.category === this.categoryP)
       this.isPostsInCat = this.postsProcessed.length > 0
-      this.router.navigate(
-        [], 
-        {
-          relativeTo: this.route,
-          queryParams: { category: this.categoryP }, 
-          fragment: paths.fragmentTop
-        }); 
-        this.setPage(1);
+      // this.router.navigate(
+      //   [], 
+      //   {
+      //     relativeTo: this.route,
+      //     queryParams: { category: this.categoryP }, 
+      //     fragment: paths.fragmentTop
+      //   }); 
+      //   this.setPage(1);
     } else {
       this.postsProcessed = this.posts;
       this.isPostsInCat = this.postsProcessed.length > 0
-      this.router.navigate(
-        [], 
-        {
-          relativeTo: this.route,
-          fragment: paths.fragmentTop
-        }); 
-      this.setPage(1);
+      // this.router.navigate(
+      //   [], 
+      //   {
+      //     relativeTo: this.route,
+      //     fragment: paths.fragmentTop
+      //   }); 
+      // this.setPage(1);
     }
   }
 }
