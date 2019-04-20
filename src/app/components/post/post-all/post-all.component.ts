@@ -61,12 +61,12 @@ export class PostAllComponent implements OnInit {
     this.router.navigate(
       [], 
       {
+        // relativeTo: this.route,
         queryParams: queryParams, 
         fragment: paths.fragmentTop,
         preserveFragment: true,
       }); 
-      const url = document.URL
-      window.location.assign(url)
+      window.location.hash = paths.fragmentTop;
   }
 
   searchPosts(tes){
