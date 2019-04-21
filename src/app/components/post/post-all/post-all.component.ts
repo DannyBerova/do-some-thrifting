@@ -52,7 +52,6 @@ export class PostAllComponent implements OnInit {
     }
     queryParams['page'] = page;
 
-    window.location.hash = paths.fragmentTop;
     this.router.navigate(
       [], 
       {
@@ -61,6 +60,7 @@ export class PostAllComponent implements OnInit {
         fragment: paths.fragmentTop,
         preserveFragment: true,
       }); 
+      window.location.hash = paths.fragmentTop;
   }
 
   searchPosts(searchTerm: string){
