@@ -7,7 +7,7 @@ export default {
     errors: {
         postTitle: 'Title must be between 3 and 50 symbols.',
         postContent: 'Content must be between 10 and 420 symbols.',
-        postPricee: 'Price must be positive number between 0 and 2000.',
+        postPricee: 'Price must be positive number between 1 and 2000.',
         postUrl: 'Provide valid url structure - starts with https:// and ends with .jpg, .png or .gif.',
         postCategory: 'Choose valid category.',
         userUsername: 'Username must be between 5 and 30 symbols - latin letters, numbers and underscores.',

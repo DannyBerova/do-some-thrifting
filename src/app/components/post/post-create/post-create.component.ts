@@ -34,7 +34,7 @@ export class PostCreateComponent {
       ]),
       price: this.fb.control('', [
         Validators.required,
-        Validators.min(0),
+        Validators.min(1),
         Validators.max(2000),
       ]),
       images: this.fb.control('', [

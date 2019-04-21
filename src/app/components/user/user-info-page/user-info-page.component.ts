@@ -36,6 +36,7 @@ export class UserInfoPageComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.route.snapshot.data['user']['user'];
+    window.location.hash = 'top';
     this.posts = this.user['posts'].sort((a,b) => {
       a = new Date(a.createdOn);
       b = new Date(b.createdOn); //move to resolver

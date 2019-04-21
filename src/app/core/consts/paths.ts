@@ -4,5 +4,5 @@ export default {
     register: '/auth/register',
     dettailsPost: '/post/details/',
     allPost: '/post/all',
-    fragmentTop: 'topOfPage',
+    fragmentTop: 'top',
 }

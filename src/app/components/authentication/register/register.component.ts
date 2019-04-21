@@ -44,7 +44,7 @@ export class RegisterComponent {
       ]),
       email: this.fb.control('', [
         Validators.required,
-        Validators.pattern(regexPatterns.phoneNumber),
+        Validators.pattern(regexPatterns.email),
       ]),
       phoneNumber: this.fb.control('', [
         Validators.required,

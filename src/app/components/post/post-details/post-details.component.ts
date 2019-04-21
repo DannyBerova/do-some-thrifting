@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck, OnChanges } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { IPost } from '../../shared/models/IPost';
 import { IComment } from '../../shared/models/IComment';
@@ -33,6 +33,7 @@ export class PostDetailsComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private authService: AuthService,
     private postService: PostService,
     private commentService: CommentService,
@@ -53,6 +54,8 @@ export class PostDetailsComponent implements OnInit{
     this.testForm = new FormGroup({
       testSelect: new FormControl(this.post['status'])
    });
+   window.location.hash = 'top';
+    this.router.navigate([], { preserveFragment: true}); 
   }
 
   loadComments() {
