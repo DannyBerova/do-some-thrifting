@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IComment } from '../../shared/models/IComment';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { messages } from '../../../core/consts';
 
 @Component({
   selector: 'app-comment-create',
@@ -19,6 +21,7 @@ export class CommentCreateComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private commentService: CommentService,
+    private toastr: ToastrService,
     private fb: FormBuilder,
   ) { 
     this.form = this.fb.group({
@@ -50,6 +53,7 @@ export class CommentCreateComponent implements OnInit {
     
     this.commentService.createComment(commentInfo)
       .subscribe((comment) => {
+        this.toastr.success(messages.success, messages.addComment);
         this.form.reset();
         this.commentEmitter.emit();
       });

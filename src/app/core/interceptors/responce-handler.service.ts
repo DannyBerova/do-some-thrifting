@@ -25,6 +25,7 @@ export class ResponceHandlerInterceptorService implements HttpInterceptor {
          || success.url.endsWith('register')
          || success.url.endsWith('create')
          || success.url.endsWith('destroy')
+         || success.body.message.startWith('Comment')
          || success.body.message === 'Post edited successfully.'
          || success.body.message === 'Post deleted successfully!'
          || success.body.message === 'Comment deleted successfully!') {
@@ -36,6 +37,7 @@ export class ResponceHandlerInterceptorService implements HttpInterceptor {
         if (err.status === 401) {
           this.authService.logout();
           this.router.navigate([paths.login])
+          this.toastr.error(messages.error, messages.errors.sessionExpired);
         } else  if (err.error instanceof ErrorEvent) {
           // client-side error
           errorMessage = `Error: ${err.error.message}`;

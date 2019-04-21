@@ -19,7 +19,10 @@ export default {
         userPhoneNumber: 'Phone number must be between 9 and 20 symbols, numbers only.',
         userAvatar: 'Provide valid url structure - starts with https:// and ends with .jpg, .png or .gif',
         userLogin: 'Invalid credentials',
+        sessionExpired: 'Session expired! Login!',
     },
+    addComment: 'Comment added successfully.',
+    deleteComment: 'Comment deleted successfully.',
 
 
     // success: {

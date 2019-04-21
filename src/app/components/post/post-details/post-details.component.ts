@@ -90,6 +90,7 @@ export class PostDetailsComponent implements OnInit{
     const creator = this.authService.getLoggedUserId();
     this.commentService.deleteComment(id, creator)
       .subscribe(() => {
+        this.toastr.success(messages.success, messages.deleteComment);
         this.loadComments();
       })
   }
