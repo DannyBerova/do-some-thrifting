@@ -31,10 +31,13 @@ export class PostAllComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.posts = this.route.snapshot.data['posts'];
-    this.postsProcessed = this.posts;
-    this.isPostsInCat = this.postsProcessed.length > 0
-    this.setPage(1);
+     //this.posts = this.route.snapshot.data['posts'];
+    this.route.data.subscribe( d => {
+      this.posts = d['posts']
+      this.postsProcessed = this.posts;
+      this.isPostsInCat = this.postsProcessed.length > 0
+      this.setPage(1);
+    })
   }
   
   setPage(page: number) {
@@ -51,17 +54,20 @@ export class PostAllComponent implements OnInit {
       queryParams['category'] = this.categoryP;
     }
     queryParams['page'] = page;
-
-    this.router.navigate(
-      [], 
-      {
-        // relativeTo: this.route,
-        queryParams: queryParams, 
-        fragment: paths.fragmentTop,
-        preserveFragment: true,
-      }); 
-      window.location.hash = paths.fragmentTop;
-  }
+    this.route.queryParams.subscribe(r => {
+      console.log(r)
+      this.router.navigate(
+        [], 
+        {
+           relativeTo: this.route,
+          queryParams: queryParams, 
+          fragment: paths.fragmentTop,
+          preserveFragment: true,
+        }); 
+        window.location.hash = paths.fragmentTop;
+      })
+      
+    }
 
   searchPosts(searchTerm: string){
     this.categoryP = ALL_CATEGORY;
