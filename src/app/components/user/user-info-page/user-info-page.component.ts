@@ -55,7 +55,7 @@ export class UserInfoPageComponent implements OnInit {
 
   blockUnblockUser() {
     this.userservice.blockUnblockUser(this.user._id).subscribe( res => {
-      this.setStatusButton();
+      this.blockUnblock = this.blockUnblock === BLOCK ? UNBLOCK : BLOCK;
       this.toastr.success(messages.success, res['message'])
     })
   }

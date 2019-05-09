@@ -22,6 +22,7 @@ export class PostAllComponent implements OnInit {
   term: string = '';
   categoryP: string = ALL_CATEGORY;
   isPostsInCat: boolean;
+  testPic: string[];
 
   constructor(
     private postService: PostService,
@@ -32,6 +33,7 @@ export class PostAllComponent implements OnInit {
 
   ngOnInit() {
      //this.posts = this.route.snapshot.data['posts'];
+     this.testPic=['HxPJDYYH/28756159', 'L83rfG8r/2149aw']
     this.route.data.subscribe( d => {
       this.posts = d['posts']
       this.postsProcessed = this.posts;
